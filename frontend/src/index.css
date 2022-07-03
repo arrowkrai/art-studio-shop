@@ -1,0 +1,11 @@
+:root {
+  --font-roboto: "Roboto", sans-serif;
+}
+
+* {
+  font-family: "Work Sans", sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
