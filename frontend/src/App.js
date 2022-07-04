@@ -1,6 +1,8 @@
 import React from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 const theme = createTheme({
   typography: {
@@ -10,11 +12,11 @@ const theme = createTheme({
 
 const App = () => {
   return (
-    <div className="App">
-      <ThemeProvider theme={theme}>
-        <Typography variant="h1">Welcome to the West Studio Art Shop</Typography>
-      </ThemeProvider>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Header />
+      <Typography variant="h1">Welcome to the West Studio Art Shop</Typography>
+      <Footer />
+    </ThemeProvider>
   );
 };
 
