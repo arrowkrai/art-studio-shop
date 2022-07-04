@@ -1,5 +1,4 @@
 import React from "react";
-
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -9,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
-import Link from "@mui/material/Link";
+// import Link from "@mui/material/Link";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
@@ -22,6 +21,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreVert from "@mui/icons-material/MoreVert";
 import westStudioLogo from "../assets/logo.svg";
+import { Link } from 'react-router-dom'
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -94,28 +94,30 @@ const Header = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <Link href="/cart">
         <MenuItem>
+      <Link to="/cart">
           <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
             <Badge badgeContent={17} color="error">
               <ShoppingBasketRounded />
             </Badge>
           </IconButton>
           <p>Cart</p>
-        </MenuItem>
       </Link>
+        </MenuItem>
       <MenuItem>
+      <Link to="/account">
         <IconButton size="large" color="inherit">
           <AccountCircle />
         </IconButton>
         <p>Profile</p>
+      </Link>
       </MenuItem>
     </Menu>
   );
 
   return (
     <Box sx={{ flexGrow: 1, pb:2 }}>
-      <AppBar position="static" sx={{ backgroundColor: "grey.900", color: "white" }}>
+      <AppBar position="static" sx={{ backgroundColor: "#101010", color: "white" }}>
         <Toolbar>
           <img src={westStudioLogo} alt="west studio" />
           {/* <Typography variant="h6" noWrap sx={{ display: { xs: "none", sm: "block" }, mx: '1rem' }}>
@@ -131,7 +133,7 @@ const Header = () => {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Link href="/cart">
+            <Link to="/cart">
               <IconButton size="large" color="inherit">
                 <Badge badgeContent={17} color="error">
                   <ShoppingBasketOutlinedIcon />

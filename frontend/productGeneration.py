@@ -198,9 +198,10 @@ for b in newLst:
   curNumReviews = random.choice(randomNumReviews)
 
   # print
+  print(b.replace(' - ', " ").replace(" ", "_"))
   f.write("""{""" + f"""
     name: "{b.split(' - ')[1][:-4]}",
-    image: "/images/{b}",
+    image: "/images/{b.replace(' - ', " ").replace(" ", "_")}",
     price: 60,
     stock: {random.choice(randomStock)},
     rating: {0 if curNumReviews == 0 else random.choice(randomRatingGT1) if curNumReviews > 1 else random.choice(randomRating)},
