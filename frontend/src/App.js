@@ -1,8 +1,11 @@
 import React from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import HomePage from "./pages/HomePage";
+import ProductPage from "./pages/ProductPage";
+// TODO: Implement Router
+// import { BrowserRouter as Router, Route} from 'react-router-dom'
 
 const theme = createTheme({
   typography: {
@@ -13,8 +16,16 @@ const theme = createTheme({
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
+      {/* <Router>
+        <Header />
+        <Route path='/' component={HomePage} exact />
+        <Route path='/product/:id' component={ProductPage} exact />
+        <Footer />
+      </Router> */}
+
       <Header />
-      <Typography variant="h1">Welcome to the West Studio Art Shop</Typography>
+      {/* <HomePage /> */}
+      <ProductPage />
       <Footer />
     </ThemeProvider>
   );

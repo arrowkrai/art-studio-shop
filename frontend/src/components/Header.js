@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
+import Link from "@mui/material/Link";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
@@ -21,7 +22,6 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreVert from "@mui/icons-material/MoreVert";
 import westStudioLogo from "../assets/logo.svg";
-import { Container } from "@mui/material";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -64,6 +64,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Header = () => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -76,28 +77,10 @@ const Header = () => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const menuId = "search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-    >
-      <MenuItem>Profile</MenuItem>
-      <MenuItem>My account</MenuItem>
-    </Menu>
-  );
-
   const mobileMenuId = "search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
+      anchorEl={anchorEl}
       anchorOrigin={{
         vertical: "top",
         horizontal: "right",
@@ -111,14 +94,16 @@ const Header = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
-          <Badge badgeContent={17} color="error">
-            <ShoppingBasketRounded />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
+      <Link href="/cart">
+        <MenuItem>
+          <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
+            <Badge badgeContent={17} color="error">
+              <ShoppingBasketRounded />
+            </Badge>
+          </IconButton>
+          <p>Cart</p>
+        </MenuItem>
+      </Link>
       <MenuItem>
         <IconButton size="large" color="inherit">
           <AccountCircle />
@@ -129,10 +114,10 @@ const Header = () => {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, pb:2 }}>
       <AppBar position="static" sx={{ backgroundColor: "grey.900", color: "white" }}>
         <Toolbar>
-          <img src={westStudioLogo} alt="west studio logo" />
+          <img src={westStudioLogo} alt="west studio" />
           {/* <Typography variant="h6" noWrap sx={{ display: { xs: "none", sm: "block" }, mx: '1rem' }}>
             West Studio
           </Typography> */}
@@ -142,18 +127,20 @@ const Header = () => {
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
-            <StyledInputBase placeholder="Search…" inputProps={{ "aria-label": "search" }} />
+            <StyledInputBase placeholder="Search…" />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton size="large" color="inherit">
-              <Badge badgeContent={17} color="error">
-                <ShoppingBasketOutlinedIcon />
-              </Badge>
-            </IconButton>
-            <IconButton size="large" edge="end" color="inherit">
-              <AccountCircle />
-            </IconButton>
+            <Link href="/cart">
+              <IconButton size="large" color="inherit">
+                <Badge badgeContent={17} color="error">
+                  <ShoppingBasketOutlinedIcon />
+                </Badge>
+              </IconButton>
+              <IconButton size="large" edge="end" color="inherit">
+                <AccountCircle />
+              </IconButton>
+            </Link>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton size="large" onClick={handleMobileMenuOpen} color="inherit">
@@ -163,7 +150,6 @@ const Header = () => {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
     </Box>
   );
 };

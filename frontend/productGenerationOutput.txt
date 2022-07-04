@@ -1,1428 +1,1424 @@
-const products = [
-  {
+{
     name: "Debonair Master Yi",
     image: "/images/178 - Debonair Master Yi.jpg",
     price: 60,
     stock: 5,
     rating: 4,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Debonair Draven",
     image: "/images/177 - Debonair Draven.jpg",
     price: 60,
     stock: 3,
     rating: 4.5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Debonair Zed",
     image: "/images/176 - Debonair Zed.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Debonair Brand (Prestige Edition)",
     image: "/images/175 - Debonair Brand (Prestige Edition).jpg",
     price: 60,
     stock: 5,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Debonair Brand",
     image: "/images/174 - Debonair Brand.jpg",
     price: 60,
     stock: 1,
     rating: 4.5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Dynasty Ahri",
     image: "/images/173 - Dynasty Ahri.jpg",
     price: 60,
     stock: 5,
     rating: 4,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Safari Caitlyn",
     image: "/images/172 - Safari Caitlyn.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Sheriff Caitlyn",
     image: "/images/171 - Sheriff Caitlyn.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Officer Caitlyn",
     image: "/images/170 - Officer Caitlyn.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Arctic Warfare Caitlyn",
     image: "/images/169 - Arctic Warfare Caitlyn.jpg",
     price: 60,
     stock: 6,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Resistance Caitlyn",
     image: "/images/168 - Resistance Caitlyn.jpg",
     price: 60,
     stock: 6,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Arcane Caitlyn",
     image: "/images/167 - Arcane Caitlyn.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Cafe Cuties Vladimir",
     image: "/images/166 - Cafe Cuties Vladimir.jpg",
     price: 60,
     stock: 3,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Cafe Cuties Bard",
     image: "/images/165 - Cafe Cuties Bard.jpg",
     price: 60,
     stock: 5,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Cafe Cuties Annie",
     image: "/images/164 - Cafe Cuties Annie.jpg",
     price: 60,
     stock: 5,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Cafe Cuties Soraka & Sivir",
     image: "/images/163 - Cafe Cuties Soraka & Sivir.jpg",
     price: 60,
     stock: 1,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Cafe Cuties Gwen",
     image: "/images/162 - Cafe Cuties Gwen.jpg",
     price: 60,
     stock: 1,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Arcane Jayce",
     image: "/images/161 - Arcane Jayce.jpg",
     price: 60,
     stock: 3,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Victorious Blitzcrank",
     image: "/images/160 - Victorious Blitzcrank.jpg",
     price: 60,
     stock: 1,
     rating: 4.5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Duality Dragon Volibear (Prestige Edition)",
     image: "/images/159 - Duality Dragon Volibear (Prestige Edition).jpg",
     price: 60,
     stock: 3,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Duality Dragon Volibear",
     image: "/images/158 - Duality Dragon Volibear.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Tranquility Dragon Karma",
     image: "/images/157 - Tranquility Dragon Karma.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Steel Dragon Thresh",
     image: "/images/156 - Steel Dragon Thresh.jpg",
     price: 60,
     stock: 6,
     rating: 4.5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Lagoon Dragon Kai'Sa",
     image: "/images/155 - Lagoon Dragon Kai'Sa.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Bewitching Morgana (Prestige Edition)",
     image: "/images/154 - Bewitching Morgana (Prestige Edition).jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Bewitching Yuumi",
     image: "/images/153 - Bewitching Yuumi.jpg",
     price: 60,
     stock: 6,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Bewitching Nami & Fiora",
     image: "/images/152 - Bewitching Nami & Fiora.jpg",
     price: 60,
     stock: 5,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Bewitching Syndra",
     image: "/images/151 - Bewitching Syndra.jpg",
     price: 60,
     stock: 4,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Worlds 2021 Jarvan IV",
     image: "/images/150 - Worlds 2021 Jarvan IV.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Nightbringer Tryndamere",
     image: "/images/149 - Nightbringer Tryndamere.jpg",
     price: 60,
     stock: 4,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Dawnbringer Yone",
     image: "/images/148 - Dawnbringer Yone.jpg",
     price: 60,
     stock: 5,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Hextech Tristana",
     image: "/images/147 - Hextech Tristana.jpg",
     price: 60,
     stock: 4,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Dissonance of Pentakill Viego",
     image: "/images/146 - Dissonance of Pentakill Viego.jpg",
     price: 60,
     stock: 4,
     rating: 4,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Pentakill III Lost Chapter Mordekaiser, Karthus, and Sona",
     image: "/images/145 - Pentakill III Lost Chapter Mordekaiser, Karthus, and Sona.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Pentakill III Lost Chapter Yorick, Kayle, and Olaf",
     image: "/images/144 - Pentakill III Lost Chapter Yorick, Kayle, and Olaf.jpg",
     price: 60,
     stock: 5,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Divine Phoenix Anivia",
     image: "/images/143 - Divine Phoenix Anivia.jpg",
     price: 60,
     stock: 4,
     rating: 4,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Brave Phoenix Xayah",
     image: "/images/142 - Brave Phoenix Xayah.jpg",
     price: 60,
     stock: 4,
     rating: 4.5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Crime City Nightmare Zyra",
     image: "/images/141 - Crime City Nightmare Zyra.jpg",
     price: 60,
     stock: 6,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Crime City Nightmare Darius",
     image: "/images/140 - Crime City Nightmare Darius.jpg",
     price: 60,
     stock: 6,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Crime City Nightmare Twisted Fate",
     image: "/images/139 - Crime City Nightmare Twisted Fate.jpg",
     price: 60,
     stock: 3,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Crime City Nightmare Shaco",
     image: "/images/138 - Crime City Nightmare Shaco.jpg",
     price: 60,
     stock: 6,
     rating: 4,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Crime City Nightmare Akali",
     image: "/images/137 - Crime City Nightmare Akali.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Coven Leblanc (Prestige Edition)",
     image: "/images/136 - Coven Leblanc (Prestige Edition).jpg",
     price: 60,
     stock: 1,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Coven Ashe",
     image: "/images/135 - Coven Ashe.jpg",
     price: 60,
     stock: 2,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Coven Ahri",
     image: "/images/134 - Coven Ahri.jpg",
     price: 60,
     stock: 0,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Old God Warwick",
     image: "/images/133 - Old God Warwick.jpg",
     price: 60,
     stock: 4,
     rating: 4,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Old God Malphite",
     image: "/images/132 - Old God Malphite.jpg",
     price: 60,
     stock: 6,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Unbound Thresh",
     image: "/images/131 - Unbound Thresh.jpg",
     price: 60,
     stock: 1,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Cyber Pop Akshan",
     image: "/images/130 - Cyber Pop Akshan.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Sentinel Pyke",
     image: "/images/129 - Sentinel Pyke.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Ascended Pantheon (Prestige Edition)",
     image: "/images/128 - Ascended Pantheon (Prestige Edition).jpg",
     price: 60,
     stock: 5,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Ruined Pantheon",
     image: "/images/127 - Ruined Pantheon.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Sentinel Olaf",
     image: "/images/126 - Sentinel Olaf.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Sentinel Riven",
     image: "/images/125 - Sentinel Riven.jpg",
     price: 60,
     stock: 3,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Astronaut Corki",
     image: "/images/124 - Astronaut Corki.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Astronaut Veigar & Rammus",
     image: "/images/123 - Astronaut Veigar & Rammus.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Astronaut Maokai",
     image: "/images/122 - Astronaut Maokai.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Toxic Dr. Mundo",
     image: "/images/121 - Toxic Dr. Mundo.jpg",
     price: 60,
     stock: 4,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Rageborn Mundo",
     image: "/images/120 - Rageborn Mundo.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Mundo Mundo",
     image: "/images/119 - Mundo Mundo.jpg",
     price: 60,
     stock: 4,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Executioner Mundo",
     image: "/images/118 - Executioner Mundo.jpg",
     price: 60,
     stock: 6,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Mr. Mundoverse",
     image: "/images/117 - Mr. Mundoverse.jpg",
     price: 60,
     stock: 1,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Corporate Mundo",
     image: "/images/116 - Corporate Mundo.jpg",
     price: 60,
     stock: 6,
     rating: 4.5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Pool Party Braum & Pool Party Sett",
     image: "/images/115 - Pool Party Braum & Pool Party Sett.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "PROJECT Varus",
     image: "/images/114 - PROJECT Varus.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "PROJECT Sylas (Prestige Edition)",
     image: "/images/113 - PROJECT Sylas (Prestige Edition).jpg",
     price: 60,
     stock: 4,
     rating: 4.5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "PROJECT Sylas",
     image: "/images/112 - PROJECT Sylas.jpg",
     price: 60,
     stock: 5,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "PROJECT Senna",
     image: "/images/111 - PROJECT Senna.jpg",
     price: 60,
     stock: 5,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "PROJECT Renekton",
     image: "/images/110 - PROJECT Renekton.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "PROJECT Mordekaiser",
     image: "/images/109 - PROJECT Mordekaiser.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "PROJECT Sejuani",
     image: "/images/108 - PROJECT Sejuani.jpg",
     price: 60,
     stock: 4,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Arcana Xerath",
     image: "/images/107 - Arcana Xerath.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Arcana Tahm Kench",
     image: "/images/106 - Arcana Tahm Kench.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Conqueror Jax (Prestige Edition)",
     image: "/images/105 - Conqueror Jax (Prestige Edition).jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Conqueror Jax",
     image: "/images/104 - Conqueror Jax.jpg",
     price: 60,
     stock: 5,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Dragonslayer Twitch",
     image: "/images/103 - Dragonslayer Twitch.jpg",
     price: 60,
     stock: 5,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Dragon Guardian Galio and Dragonslayer Kayle",
     image: "/images/102 - Dragon Guardian Galio and Dragonslayer Kayle.jpg",
     price: 60,
     stock: 6,
     rating: 4.5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Blackfrost Vel'Koz",
     image: "/images/101 - Blackfrost Vel'Koz.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Blackfrost Sion",
     image: "/images/100 - Blackfrost Sion.jpg",
     price: 60,
     stock: 5,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Space Groove Samira",
     image: "/images/099 - Space Groove Samira.jpg",
     price: 60,
     stock: 4,
     rating: 4.5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Space Groove Blitz & Crank",
     image: "/images/098 - Space Groove Blitz & Crank.jpg",
     price: 60,
     stock: 3,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Space Groove Nunu & Willump",
     image: "/images/097 - Space Groove Nunu & Willump.jpg",
     price: 60,
     stock: 6,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Space Groove Nasus",
     image: "/images/096 - Space Groove Nasus.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Space Groove Rumble",
     image: "/images/095 - Space Groove Rumble.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Space Groove Lux",
     image: "/images/094 - Space Groove Lux.jpg",
     price: 60,
     stock: 6,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Battle Academia Leona (Prestige Edition)",
     image: "/images/093 - Battle Academia Leona (Prestige Edition).jpg",
     price: 60,
     stock: 6,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Battle Academia Leona",
     image: "/images/092 - Battle Academia Leona.jpg",
     price: 60,
     stock: 5,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Battle Academia Yone",
     image: "/images/091 - Battle Academia Yone.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Battle Academia Caitlyn",
     image: "/images/090 - Battle Academia Caitlyn.jpg",
     price: 60,
     stock: 3,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Battle Academia Garen & Wukong",
     image: "/images/089 - Battle Academia Garen & Wukong.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Beezahar",
     image: "/images/088 - Beezahar.jpg",
     price: 60,
     stock: 6,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Withered Rose Syndra & Talon",
     image: "/images/087 - Withered Rose Syndra & Talon.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Crystal Rose Zyra & Swain",
     image: "/images/086 - Crystal Rose Zyra & Swain.jpg",
     price: 60,
     stock: 4,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Lunar Beast Aphelios (Legendary)",
     image: "/images/085 - Lunar Beast Aphelios (Legendary).jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Lunar Beast Jarvan IV",
     image: "/images/084 - Lunar Beast Jarvan IV.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Lunar Beast Darius",
     image: "/images/083 - Lunar Beast Darius.jpg",
     price: 60,
     stock: 5,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Shan Hai Scrolls Cho'Gath",
     image: "/images/082 - Shan Hai Scrolls Cho'Gath.jpg",
     price: 60,
     stock: 5,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Shan Hai Scrolls Jhin",
     image: "/images/081 - Shan Hai Scrolls Jhin.jpg",
     price: 60,
     stock: 3,
     rating: 4,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Ruined Draven",
     image: "/images/080 - Ruined Draven.jpg",
     price: 60,
     stock: 6,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Ruined Karma",
     image: "/images/079 - Ruined Karma.jpg",
     price: 60,
     stock: 6,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Victorious Lucian",
     image: "/images/078 - Victorious Lucian.jpg",
     price: 60,
     stock: 6,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Marauder Kalista",
     image: "/images/077 - Marauder Kalista.jpg",
     price: 60,
     stock: 3,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Marauder Xin Zhao",
     image: "/images/076 - Marauder Xin Zhao.jpg",
     price: 60,
     stock: 5,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Warden Gragas",
     image: "/images/075 - Warden Gragas.jpg",
     price: 60,
     stock: 2,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Warden Quinn",
     image: "/images/074 - Warden Quinn.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Elderwood Xayah & Rakan",
     image: "/images/073 - Elderwood Xayah & Rakan.jpg",
     price: 60,
     stock: 4,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Battle Queen Janna",
     image: "/images/072 - Battle Queen Janna.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Battle Queen Diana",
     image: "/images/071 - Battle Queen Diana.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Battle Queen Katarina",
     image: "/images/070 - Battle Queen Katarina.jpg",
     price: 60,
     stock: 2,
     rating: 4,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Dark Cosmic Lissandra",
     image: "/images/069 - Dark Cosmic Lissandra.jpg",
     price: 60,
     stock: 2,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Cosmic Vladimir",
     image: "/images/068 - Cosmic Vladimir.jpg",
     price: 60,
     stock: 4,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Cosmic Varus",
     image: "/images/067 - Cosmic Varus.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Cosmic Skarner",
     image: "/images/066 - Cosmic Skarner.jpg",
     price: 60,
     stock: 2,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Cosmic Nidalee",
     image: "/images/065 - Cosmic Nidalee.jpg",
     price: 60,
     stock: 4,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Cosmic Nami",
     image: "/images/064 - Cosmic Nami.jpg",
     price: 60,
     stock: 4,
     rating: 4,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Cosmic Illaoi",
     image: "/images/063 - Cosmic Illaoi.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Cosmic Hecarim",
     image: "/images/062 - Cosmic Hecarim.jpg",
     price: 60,
     stock: 5,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Cosmic Anivia",
     image: "/images/061 - Cosmic Anivia.jpg",
     price: 60,
     stock: 1,
     rating: 4,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Odyssey Twisted Fate",
     image: "/images/060 - Odyssey Twisted Fate.jpg",
     price: 60,
     stock: 5,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Odyssey Kha'Zix",
     image: "/images/059 - Odyssey Kha'Zix.jpg",
     price: 60,
     stock: 6,
     rating: 4,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Little Devil Fizz",
     image: "/images/058 - Little Devil Fizz.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Bewitching Elise",
     image: "/images/057 - Bewitching Elise.jpg",
     price: 60,
     stock: 6,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Pumpkin Prince Amumu",
     image: "/images/056 - Pumpkin Prince Amumu.jpg",
     price: 60,
     stock: 2,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Obsidian Dragon Sett",
     image: "/images/055 - Obsidian Dragon Sett.jpg",
     price: 60,
     stock: 5,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Eternal Dragon Brand",
     image: "/images/054 - Eternal Dragon Brand.jpg",
     price: 60,
     stock: 4,
     rating: 4.5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Championship Leblanc",
     image: "/images/053 - Championship Leblanc.jpg",
     price: 60,
     stock: 4,
     rating: 4,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Psy Ops Kayle",
     image: "/images/052 - Psy Ops Kayle.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Psy Ops Zed",
     image: "/images/051 - Psy Ops Zed.jpg",
     price: 60,
     stock: 6,
     rating: 4.5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Psy Ops Viktor",
     image: "/images/050 - Psy Ops Viktor.jpg",
     price: 60,
     stock: 3,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Psy Ops Pyke",
     image: "/images/049 - Psy Ops Pyke.jpg",
     price: 60,
     stock: 5,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Psy Ops Master Yi",
     image: "/images/048 - Psy Ops Master Yi.jpg",
     price: 60,
     stock: 5,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Psy Ops Shen",
     image: "/images/047 - Psy Ops Shen.jpg",
     price: 60,
     stock: 1,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Psy Ops Vi",
     image: "/images/046 - Psy Ops Vi.jpg",
     price: 60,
     stock: 2,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Spirit Blossom Cassiopeia",
     image: "/images/045 - Spirit Blossom Cassiopeia.jpg",
     price: 60,
     stock: 4,
     rating: 4.5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Spirit Blossom Lillia",
     image: "/images/044 - Spirit Blossom Lillia.jpg",
     price: 60,
     stock: 6,
     rating: 4.5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Infernal Vel'Koz",
     image: "/images/043 - Infernal Vel'Koz.jpg",
     price: 60,
     stock: 6,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Infernal Karthus & Kennen",
     image: "/images/042 - Infernal Karthus & Kennen.jpg",
     price: 60,
     stock: 6,
     rating: 4,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Conqueror Nautilus",
     image: "/images/041 - Conqueror Nautilus.jpg",
     price: 60,
     stock: 3,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Arcanist Kog'Maw",
     image: "/images/040 - Arcanist Kog'Maw.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Pool Party Orianna & Taliyah",
     image: "/images/039 - Pool Party Orianna & Taliyah.jpg",
     price: 60,
     stock: 6,
     rating: 4.5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Pool Party Syndra, Heimerdinger, & Jarvan IV",
     image: "/images/038 - Pool Party Syndra, Heimerdinger, & Jarvan IV.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Hextech Nocturne",
     image: "/images/037 - Hextech Nocturne.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Runeguard Volibear",
     image: "/images/036 - Runeguard Volibear.jpg",
     price: 60,
     stock: 5,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Northern Storm Volibear",
     image: "/images/035 - Northern Storm Volibear.jpg",
     price: 60,
     stock: 4,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Thunder Lord Volibear",
     image: "/images/034 - Thunder Lord Volibear.jpg",
     price: 60,
     stock: 6,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Astronaut Bard",
     image: "/images/033 - Astronaut Bard.jpg",
     price: 60,
     stock: 6,
     rating: 4,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Astronaut Gnar & Poppy",
     image: "/images/032 - Astronaut Gnar & Poppy.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Pulsefire Ekko",
     image: "/images/031 - Pulsefire Ekko.jpg",
     price: 60,
     stock: 6,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Dark Candy Fiddlesticks",
     image: "/images/030 - Dark Candy Fiddlesticks.jpg",
     price: 60,
     stock: 3,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Surprise Party Fiddlesticks",
     image: "/images/029 - Surprise Party Fiddlesticks.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Union Jack Fiddlesticks",
     image: "/images/028 - Union Jack Fiddlesticks.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Bandito Fiddlesticks",
     image: "/images/027 - Bandito Fiddlesticks.jpg",
     price: 60,
     stock: 5,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Dark Star Xerath",
     image: "/images/026 - Dark Star Xerath.jpg",
     price: 60,
     stock: 6,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Dark Star Mordekaiser",
     image: "/images/025 - Dark Star Mordekaiser.jpg",
     price: 60,
     stock: 0,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Dark Star Malphite",
     image: "/images/024 - Dark Star Malphite.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Talon Blackwood, Twitch Shadowfoot, Taric Luminshield",
     image: "/images/023 - Talon Blackwood, Twitch Shadowfoot, Taric Luminshield.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Hextech Sejuani",
     image: "/images/022 - Hextech Sejuani.jpg",
     price: 60,
     stock: 6,
     rating: 4,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Blackfrost Rek'Sai",
     image: "/images/021 - Blackfrost Rek'Sai.jpg",
     price: 60,
     stock: 4,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Blackfrost Alistar & Renekton",
     image: "/images/020 - Blackfrost Alistar & Renekton.jpg",
     price: 60,
     stock: 4,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Blood Moon Katarina & Master Yi",
     image: "/images/019 - Blood Moon Katarina & Master Yi.jpg",
     price: 60,
     stock: 1,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Freljord Sylas",
     image: "/images/018 - Freljord Sylas.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Dragon Slayer Trundle",
     image: "/images/017 - Dragon Slayer Trundle.jpg",
     price: 60,
     stock: 6,
     rating: 4,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Mecha Kingdom Leona",
     image: "/images/016 - Mecha Kingdom Leona.jpg",
     price: 60,
     stock: 6,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Mecha Kingdom Garen",
     image: "/images/015 - Mecha Kingdom Garen.jpg",
     price: 60,
     stock: 5,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Dragonslayer Olaf & Diana",
     image: "/images/014 - Dragonslayer Olaf & Diana.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Guardian of the Sands Janna, Ryze and Rengar",
     image: "/images/013 - Guardian of the Sands Janna, Ryze and Rengar.jpg",
     price: 60,
     stock: 4,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Sugar Rush Evelynn, Braum and Ziggs",
     image: "/images/012 - Sugar Rush Evelynn, Braum and Ziggs.jpg",
     price: 60,
     stock: 5,
     rating: 5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Dawn Bringer Karma",
     image: "/images/011 - Dawn Bringer Karma.jpg",
     price: 60,
     stock: 3,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Dawn Bringer Nidalee",
     image: "/images/010 - Dawn Bringer Nidalee.jpg",
     price: 60,
     stock: 6,
     rating: 4,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Night Bringer Vladimir",
     image: "/images/009 - Night Bringer Vladimir.jpg",
     price: 60,
     stock: 2,
     rating: 5,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Night Bringer Lee Sin",
     image: "/images/008 - Night Bringer Lee Sin.jpg",
     price: 60,
     stock: 2,
     rating: 4,
     numReviews: 1,
-  },
-  {
+},
+{
     name: "Pulsefire Thresh",
     image: "/images/007 - Pulsefire Thresh.jpg",
     price: 60,
     stock: 4,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "High Noon Ashe",
     image: "/images/006 - High Noon Ashe.jpg",
     price: 60,
     stock: 4,
     rating: 4.5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "High Noon Hecarim",
     image: "/images/005 - High Noon Hecarim.jpg",
     price: 60,
     stock: 2,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "High Noon Darius",
     image: "/images/004 - High Noon Darius.jpg",
     price: 60,
     stock: 4,
     rating: 4.5,
     numReviews: 2,
-  },
-  {
+},
+{
     name: "Hextech Amumu",
     image: "/images/003 - Hextech Amumu.jpg",
     price: 60,
     stock: 1,
     rating: 0,
     numReviews: 0,
-  },
-  {
+},
+{
     name: "Infernal Varus, Shen and Galio",
     image: "/images/002 - Infernal Varus, Shen and Galio.jpg",
     price: 60,
     stock: 2,
     rating: 5,
     numReviews: 3,
-  },
-  {
+},
+{
     name: "Majestic Empress Morgana",
     image: "/images/001 - Majestic Empress Morgana.jpg",
     price: 60,
     stock: 3,
     rating: 0,
     numReviews: 0,
-  },
-];
-
-export default products;
+},
