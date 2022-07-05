@@ -24,15 +24,22 @@ const HomePage = () => {
 
   // TODO: If first page of shop, have a big banner with text welcoming the visitor.
   return (
-    <Box sx={{ backgroundColor: "#171717", pt:2 }}>
+    <Box sx={{ backgroundColor: "#171717", pt: 2 }}>
       <Container maxWidth="">
         {loading ? (
-          <Box sx={{width:"100%", height:"100vh"}}>
+          <Box sx={{ width: "100%", height: "100vh" }}>
             <Loader />
           </Box>
         ) : error ? (
-          <Box sx={{width:"100%", height:"100vh"}}>
-          <Message variant='error' children={<Typography variant="p" sx={{fontWeight:500}}>{error}</Typography>}/>
+          <Box sx={{ width: "100%", height: "100vh" }}>
+            <Message
+              variant="error"
+              children={
+                <Typography variant="p" sx={{ fontWeight: 500 }}>
+                  {error}
+                </Typography>
+              }
+            />
           </Box>
         ) : (
           <Grid container spacing={2}>
