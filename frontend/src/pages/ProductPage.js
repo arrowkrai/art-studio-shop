@@ -17,28 +17,29 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./ProductPage.css";
-import products from "../products";
+// import products from "../products";
 
 const ProductPage = ({ match }) => {
   // const product = products.find((p) => p._id === match.params.id)
-  // const [product, setProduct] = useState([])
+  const [product, setProduct] = useState([])
 
-  // useEffect(() => {
-  //   const fetchProduct = async () => {
-  //     const {data} = await axios.get(`/api/products/${match.params.id}`)
+  useEffect(() => {
+    const fetchProduct = async () => {
+      console.log(match)
+      const {data} = await axios.get(`/api/products/${match.params.id}`)
 
-  //     setProduct(data)
-  //   }
+      setProduct(data)
+    }
 
-  //   fetchProduct()
-  // }, [match])
+    fetchProduct()
+  }, [match])
 
-  const product = products[3];
+  // const product = products[3];
 
   // const product = products[5];
 
   return (
-    <Grid container spacing={2} sx={{ py: 10, px: 5, backgroundColor: "#171717" }}>
+    <Grid container spacing={2} sx={{ py: 10, px: 5, mt:0, backgroundColor: "#171717" }}>
       <Grid item xs={12} md={6}>
         {/* <li className="Frame">
             <img src={product.image} alt={product.name} style={{ width: "100%" }} />

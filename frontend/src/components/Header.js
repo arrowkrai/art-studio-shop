@@ -116,7 +116,7 @@ const Header = () => {
   );
 
   return (
-    <Box sx={{ flexGrow: 1, pb:2 }}>
+    <Box sx={{ flexGrow: 1, pb:0 }}>
       <AppBar position="static" sx={{ backgroundColor: "#101010", color: "white" }}>
         <Toolbar>
           <img src={westStudioLogo} alt="west studio" />
