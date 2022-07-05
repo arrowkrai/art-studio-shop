@@ -4,7 +4,8 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
-import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
+import CartPage from "./pages/CartPage";
+import { BrowserRouter, Routes, Route, useParams, useLocation } from "react-router-dom";
 
 const theme = createTheme({
   typography: {
@@ -17,6 +18,13 @@ const ProductPageWrapper = () => {
   return <ProductPage id={id} />;
 };
 
+const CartPageWrapper = () => {
+  const {id} = useParams();
+  const {search} = useLocation();
+
+  return <CartPage id={id} search={search} />
+}
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -26,6 +34,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/product/:id" element={<ProductPageWrapper />} />
+          <Route path="/cart/:id" element={<CartPageWrapper />} />
+          <Route path="/cart" element={<CartPageWrapper />} />
         </Routes>
 
         <Footer />

@@ -192,7 +192,7 @@ for b in a.split('\n'):
       newLst.append(c)
 
 
-f = open('productGenerationOutput.txt', 'w')
+f = open('generateProductReviewsOutput.txt', 'w')
 
 for b in newLst:
   curNumReviews = random.choice(randomNumReviews)

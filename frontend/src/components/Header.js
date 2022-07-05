@@ -21,7 +21,10 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreVert from "@mui/icons-material/MoreVert";
 import westStudioLogo from "../assets/logo.svg";
-import { Link } from 'react-router-dom'
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -77,6 +80,10 @@ const Header = () => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+
+  const cart = useSelector((state) => state.cart)
+  const {cartItems} = cart;
+
   const mobileMenuId = "search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
@@ -94,38 +101,41 @@ const Header = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-        <MenuItem>
-      <Link to="/cart">
-          <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
-            <Badge badgeContent={17} color="error">
-              <ShoppingBasketRounded />
+      <MenuItem>
+        <Link to="/cart">
+          <IconButton size="large" color="inherit">
+            <Badge badgeContent={cartItems.length && cartItems.reduce((acc, item) => acc + item.qty, 0)} color="error">
+              <ShoppingCartOutlinedIcon />
             </Badge>
           </IconButton>
           <p>Cart</p>
-      </Link>
-        </MenuItem>
+        </Link>
+      </MenuItem>
       <MenuItem>
-      <Link to="/account">
-        <IconButton size="large" color="inherit">
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </Link>
+        <Link to="/account">
+          <IconButton size="large" color="inherit">
+            <AccountCircle />
+          </IconButton>
+          <p>Profile</p>
+        </Link>
       </MenuItem>
     </Menu>
   );
 
   return (
-    <Box sx={{ flexGrow: 1, pb:0 }}>
+    <Box sx={{ flexGrow: 1, pb: 0 }}>
       <AppBar position="static" sx={{ backgroundColor: "#101010", color: "white" }}>
         <Toolbar>
-          <img src={westStudioLogo} alt="west studio" />
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Box sx={{ display: "flex" }}>
+              <img src={westStudioLogo} alt="west studio" />
+            </Box>
+          </Link>
+
           {/* <Typography variant="h6" noWrap sx={{ display: { xs: "none", sm: "block" }, mx: '1rem' }}>
             West Studio
           </Typography> */}
-          <Search
-            sx={{ backgroundColor: "grey.800", borderRadius: "24px", "&:hover": { backgroundColor: "grey.800" } }}
-          >
+          <Search sx={{ backgroundColor: "grey.800", borderRadius: "24px", "&:hover": { backgroundColor: "grey.800" } }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -133,13 +143,15 @@ const Header = () => {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Link to="/cart">
-              <IconButton size="large" color="inherit">
-                <Badge badgeContent={17} color="error">
-                  <ShoppingBasketOutlinedIcon />
+            <Link to="/cart" style={{ textDecoration: "none" }}>
+              <IconButton size="large" color="inherit" sx={{color:'grey.100'}}>
+                <Badge badgeContent={cartItems.length && cartItems.reduce((acc, item) => acc + item.qty, 0)} color="info">
+                  <ShoppingCartOutlinedIcon />
                 </Badge>
               </IconButton>
-              <IconButton size="large" edge="end" color="inherit">
+            </Link>
+            <Link to="/cart" style={{ textDecoration: "none" }}>
+              <IconButton size="large" color="inherit" edge="end" sx={{color:'grey.100'}}>
                 <AccountCircle />
               </IconButton>
             </Link>
