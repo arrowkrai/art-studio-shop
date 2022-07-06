@@ -123,7 +123,7 @@ const Header = () => {
   );
 
   return (
-    <Box sx={{ flexGrow: 1, pb: 0 }}>
+    <Box sx={{ flexGrow: 1, pb: 0}}>
       <AppBar position="static" sx={{ backgroundColor: "#101010", color: "white" }}>
         <Toolbar>
           <Link to="/" style={{ textDecoration: "none" }}>
@@ -135,7 +135,7 @@ const Header = () => {
           {/* <Typography variant="h6" noWrap sx={{ display: { xs: "none", sm: "block" }, mx: '1rem' }}>
             West Studio
           </Typography> */}
-          <Search sx={{ backgroundColor: "grey.800", borderRadius: "24px", "&:hover": { backgroundColor: "grey.800" } }}>
+          <Search sx={{ backgroundColor: "grey.800", borderRadius: "24px", ml:2, "&:hover": { backgroundColor: "grey.800" } }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>

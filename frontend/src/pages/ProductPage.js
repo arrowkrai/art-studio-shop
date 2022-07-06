@@ -26,7 +26,7 @@ import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import './ProductPage.css'
+import "./ProductPage.css";
 
 const ProductPage = ({ id }) => {
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ const ProductPage = ({ id }) => {
   };
 
   return (
-    <Box sx={{ py: 4, px: 5, mt: 0, backgroundColor: "#171717" }}>
+    <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 5, mt: 0, backgroundColor: "#171717" }}>
       <Link to="/" style={{ textDecoration: "none" }}>
         <Box sx={{ display: "flex" }}>
           <ArrowBackIcon sx={{ color: "grey.100", mr: 1 }} />
@@ -56,20 +56,16 @@ const ProductPage = ({ id }) => {
       </Link>
 
       {loading ? (
-        <Box sx={{ width: "100%", height: "100vh" }}>
-          <Loader />
-        </Box>
+        <Loader />
       ) : error ? (
-        <Box sx={{ width: "100%", height: "100vh" }}>
-          <Message
-            variant="error"
-            children={
-              <Typography variant="p" sx={{ fontWeight: 500 }}>
-                {error}
-              </Typography>
-            }
-          />
-        </Box>
+        <Message
+          variant="error"
+          children={
+            <Typography variant="p" sx={{ fontWeight: 500 }}>
+              {error}
+            </Typography>
+          }
+        />
       ) : (
         <Grid container spacing={2} sx={{ py: 6 }}>
           <Grid item xs={12} md={7}>
@@ -188,7 +184,7 @@ const ProductPage = ({ id }) => {
               </Box>
             </Box>
           </Grid>
-          <Grid item xl={12} sx={{ mt: 20 }}>
+          <Grid item xs={12} sx={{ mt: 20 }}>
             <Box sx={{ display: "flex", flexDirection: "column", color: "white" }}>
               <Typography variant="h5" align="center">
                 You may also like
