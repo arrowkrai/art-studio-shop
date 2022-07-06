@@ -118,7 +118,7 @@ const Header = () => {
             <IconButton size="large" color="inherit">
               <AccountCircle />
             </IconButton>
-            <Typography sx={{ fontSize: "1.3rem" }}>Profile</Typography>
+            <Typography sx={{ fontSize: "1.3rem" }}>Account</Typography>
           </Box>
         </Link>
       </MenuItem>

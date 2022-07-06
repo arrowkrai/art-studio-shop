@@ -1,3 +1,5 @@
+// Backup of the products array. Use mongodb for live site
+
 const products = [
   {
     name: "Debonair Master Yi",
