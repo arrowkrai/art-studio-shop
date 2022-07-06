@@ -67,6 +67,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Header = () => {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -113,12 +116,12 @@ const Header = () => {
         </Link>
       </MenuItem>
       <MenuItem>
-        <Link to="/account" style={{ textDecoration: "none", color: "black" }}>
+        <Link to={userInfo ? "/profile" : "/login"} style={{ textDecoration: "none", color: "black" }}>
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <IconButton size="large" color="inherit">
               <AccountCircle />
             </IconButton>
-            <Typography sx={{ fontSize: "1.3rem" }}>Account</Typography>
+            <Typography sx={{ fontSize: "1.3rem" }}>{userInfo ? "Profile" : "Login"}</Typography>
           </Box>
         </Link>
       </MenuItem>
@@ -153,11 +156,16 @@ const Header = () => {
                 </Badge>
               </IconButton>
             </Link>
-            <Link to="/cart" style={{ textDecoration: "none" }}>
+
+            
+
+            <Link to={userInfo ? "/profile" : "/login"} style={{ textDecoration: "none" }}>
               <IconButton size="large" color="inherit" edge="end" sx={{ color: "grey.100" }}>
                 <AccountCircle />
               </IconButton>
             </Link>
+
+
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton size="large" onClick={handleMobileMenuOpen} color="inherit">

@@ -6,7 +6,7 @@ import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
 import { BrowserRouter, Routes, Route, useParams, useLocation } from "react-router-dom";
-
+import LoginPage from "./pages/LoginPage";
 const theme = createTheme({
   typography: {
     fontFamily: `"Work Sans", "Roboto", sans-serif`,
@@ -19,11 +19,17 @@ const ProductPageWrapper = () => {
 };
 
 const CartPageWrapper = () => {
-  const {id} = useParams();
+  const { id } = useParams();
+  const { search } = useLocation();
+
+  return <CartPage id={id} search={search} />;
+};
+
+const LoginPageWrapper = () => {
   const {search} = useLocation();
 
-  return <CartPage id={id} search={search} />
-}
+  return <LoginPage search={search} />;
+};
 
 const App = () => {
   return (
@@ -36,6 +42,7 @@ const App = () => {
           <Route path="/product/:id" element={<ProductPageWrapper />} />
           <Route path="/cart/:id" element={<CartPageWrapper />} />
           <Route path="/cart" element={<CartPageWrapper />} />
+          <Route path="/login" element={<LoginPageWrapper />} />
         </Routes>
 
         <Footer />
