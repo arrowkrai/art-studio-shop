@@ -27,6 +27,8 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import "./ProductPage.css";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const ProductPage = ({ id }) => {
   const navigate = useNavigate();
@@ -46,8 +48,14 @@ const ProductPage = ({ id }) => {
     navigate(`/cart/${id}?qty=${qty}&frame=${frame}`);
   };
 
+  const theme = useTheme();
+
+  const mediumScreen = useMediaQuery(theme.breakpoints.up("md"));
+  const mediumAlign = mediumScreen ? "left" : "center";
+  const mediumPagePadding = mediumScreen ? 5 : 2;
+
   return (
-    <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 5, mt: 0, backgroundColor: "#171717" }}>
+    <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: mediumPagePadding, mt: 0, backgroundColor: "#171717", textAlign: mediumAlign }}>
       <Link to="/" style={{ textDecoration: "none" }}>
         <Box sx={{ display: "flex" }}>
           <ArrowBackIcon sx={{ color: "grey.100", mr: 1 }} />
@@ -80,7 +88,7 @@ const ProductPage = ({ id }) => {
           <Grid item xs={12} md={5}>
             <Box sx={{ display: "flex", flexDirection: "column", color: "white", ml: 1 }}>
               <Typography variant="h4">{product.name}</Typography>
-              <Box sx={{ display: "flex", flexDirection: "row", my: 2 }}>
+              <Box sx={{ display: "flex", justifyContent: mediumAlign, flexDirection: "row", my: 2 }}>
                 <Typography variant="p" sx={{ mt: "1px", mr: 1 }}>
                   <ProductRating value={product.rating} />
                 </Typography>
@@ -88,11 +96,11 @@ const ProductPage = ({ id }) => {
               </Box>
               <Typography variant="h6">${frame ? product.price + 10 : product.price}</Typography>
 
-              <Typography variant="p" sx={{ my: 2, mr: 2 }}>
+              <Typography variant="p" sx={{ my: 2 }}>
                 Size: 42x29cm
               </Typography>
 
-              <Box sx={{ display: "flex", alignItems: "center", my: 1 }}>
+              <Box sx={{ display: "flex", justifyContent: mediumAlign, alignItems: "center", my: 1 }}>
                 <Typography variant="p" sx={{ mr: 2 }}>
                   Frame:
                 </Typography>
@@ -107,7 +115,7 @@ const ProductPage = ({ id }) => {
                 )}
               </Box>
 
-              <Box sx={{ display: "flex", alignItems: "center", my: 1 }}>
+              <Box sx={{ display: "flex", justifyContent: mediumAlign, alignItems: "center", my: 1 }}>
                 <Typography variant="p" sx={{ mr: 2 }}>
                   Quantity:
                 </Typography>
@@ -140,34 +148,26 @@ const ProductPage = ({ id }) => {
               <Typography sx={{ mt: 3 }} variant="h6" component="div">
                 All of our art prints are made with:
               </Typography>
-              <List sx={{ mb: 1 }}>
-                <ListItem>
-                  <ListItemIcon sx={{ color: "white", fontSize: "1.2rem", display: "flex", justifyContent: "center" }}>
-                    <FaLeaf />
-                  </ListItemIcon>
-                  <ListItemText primary="Smooth, acid-free matte paper" />
+              <List sx={{ mb: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                <ListItem sx={{ display: "flex", flexDirection: "row", justifyContent: mediumAlign }}>
+                  <FaLeaf />
+                  <Typography sx={{ ml: 2 }}>Smooth, acid-free matte paper</Typography>
                 </ListItem>
-                <ListItem>
-                  <ListItemIcon sx={{ color: "white", fontSize: "1.2rem", display: "flex", justifyContent: "center" }}>
-                    <FaPaintBrush />
-                  </ListItemIcon>
-                  <ListItemText primary="Smudge proof coating" />
+                <ListItem sx={{ display: "flex", flexDirection: "row", justifyContent: mediumAlign }}>
+                  <FaPaintBrush />
+                  <Typography sx={{ ml: 2 }}>Smudge proof coating</Typography>
                 </ListItem>
-                <ListItem>
-                  <ListItemIcon sx={{ color: "white", fontSize: "1.2rem", display: "flex", justifyContent: "center" }}>
-                    <BsPrinterFill />
-                  </ListItemIcon>
-                  <ListItemText primary="Printed using fade-resistant pigment inks" />
+                <ListItem sx={{ display: "flex", flexDirection: "row", justifyContent: mediumAlign }}>
+                  <BsPrinterFill />
+                  <Typography sx={{ ml: 2 }}>Fade-resistant pigment inks</Typography>
                 </ListItem>
-                <ListItem>
-                  <ListItemIcon sx={{ color: "white", fontSize: "1.2rem", display: "flex", justifyContent: "center" }}>
-                    <FaImage />
-                  </ListItemIcon>
-                  <ListItemText primary="High contrast with 300 PPI image resolution" />
+                <ListItem sx={{ display: "flex", flexDirection: "row", justifyContent: mediumAlign }}>
+                  <FaImage />
+                  <Typography sx={{ ml: 2 }}>High contrast and 300 PPI image resolution</Typography>
                 </ListItem>
               </List>
-              <Box sx={{ width: "calc(min(500px, 100%))" }}>
-                <Accordion sx={{ backgroundColor: "#374151", color: "grey.100" }}>
+              <Box sx={{ width: "100%", display: "flex", justifyContent: mediumAlign }}>
+                <Accordion sx={{ backgroundColor: "#374151", color: "grey.100", width: "500px" }}>
                   <AccordionSummary expandIcon={<ExpandMoreIcon style={{ color: "white" }} />} aria-controls="panel1a-content" id="panel1a-header">
                     <Typography>Reviews</Typography>
                   </AccordionSummary>
@@ -176,8 +176,8 @@ const ProductPage = ({ id }) => {
                       Customer Reviews
                     </Typography>
                     <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                      <Typography variant="p">No written reviews yet</Typography>
-                      <Typography variant="p">Leave a review</Typography>
+                      <Typography>No written reviews yet</Typography>
+                      <Typography>Leave a review</Typography>
                     </Box>
                   </AccordionDetails>
                 </Accordion>
