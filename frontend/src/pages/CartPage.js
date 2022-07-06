@@ -3,15 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import { addToCart, removeFromCart } from "../actions/cartActions";
-
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import { FormControl, List, ListItem, MenuItem, Select } from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import FormControl from "@mui/material/FormControl";
+import List from "@mui/material/List";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import { FaTrash } from "react-icons/fa";
 
@@ -67,7 +68,14 @@ const CartPage = ({ id, search }) => {
           Shopping Cart
         </Typography>
         {cartItems.length === 0 ? (
-          <Typography>Your cart is empty</Typography>
+          <Typography>
+            Your cart is empty
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <Typography component="span" sx={{ ml:1, color: "primary.light", "&:hover": { textDecoration: "underline" } }}>
+                Go Back
+              </Typography>
+            </Link>
+          </Typography>
         ) : (
           <List>
             <Grid container>

@@ -21,8 +21,8 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreVert from "@mui/icons-material/MoreVert";
 import westStudioLogo from "../assets/logo.svg";
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -80,9 +80,8 @@ const Header = () => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-
-  const cart = useSelector((state) => state.cart)
-  const {cartItems} = cart;
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
 
   const mobileMenuId = "search-account-menu-mobile";
   const renderMobileMenu = (
@@ -102,28 +101,32 @@ const Header = () => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <Link to="/cart">
-          <IconButton size="large" color="inherit">
-            <Badge badgeContent={cartItems.length && cartItems.reduce((acc, item) => acc + item.qty, 0)} color="error">
-              <ShoppingCartOutlinedIcon />
-            </Badge>
-          </IconButton>
-          <p>Cart</p>
+        <Link onClick={handleMobileMenuClose} to="/cart" style={{ textDecoration: "none", color: "black" }}>
+          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <IconButton size="large" color="inherit">
+              <Badge badgeContent={cartItems.length && cartItems.reduce((acc, item) => acc + item.qty, 0)} color="info">
+                <ShoppingCartOutlinedIcon />
+              </Badge>
+            </IconButton>
+            <Typography sx={{ fontSize: "1.3rem" }}>Cart</Typography>
+          </Box>
         </Link>
       </MenuItem>
       <MenuItem>
-        <Link to="/account">
-          <IconButton size="large" color="inherit">
-            <AccountCircle />
-          </IconButton>
-          <p>Profile</p>
+        <Link to="/account" style={{ textDecoration: "none", color: "black" }}>
+          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <IconButton size="large" color="inherit">
+              <AccountCircle />
+            </IconButton>
+            <Typography sx={{ fontSize: "1.3rem" }}>Profile</Typography>
+          </Box>
         </Link>
       </MenuItem>
     </Menu>
   );
 
   return (
-    <Box sx={{ flexGrow: 1, pb: 0}}>
+    <Box sx={{ flexGrow: 1, pb: 0 }}>
       <AppBar position="static" sx={{ backgroundColor: "#101010", color: "white" }}>
         <Toolbar>
           <Link to="/" style={{ textDecoration: "none" }}>
@@ -135,7 +138,7 @@ const Header = () => {
           {/* <Typography variant="h6" noWrap sx={{ display: { xs: "none", sm: "block" }, mx: '1rem' }}>
             West Studio
           </Typography> */}
-          <Search sx={{ backgroundColor: "grey.800", borderRadius: "24px", ml:2, "&:hover": { backgroundColor: "grey.800" } }}>
+          <Search sx={{ backgroundColor: "grey.800", borderRadius: "24px", ml: 2, "&:hover": { backgroundColor: "grey.800" } }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -144,14 +147,14 @@ const Header = () => {
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <Link to="/cart" style={{ textDecoration: "none" }}>
-              <IconButton size="large" color="inherit" sx={{color:'grey.100'}}>
+              <IconButton size="large" color="inherit" sx={{ color: "grey.100" }}>
                 <Badge badgeContent={cartItems.length && cartItems.reduce((acc, item) => acc + item.qty, 0)} color="info">
                   <ShoppingCartOutlinedIcon />
                 </Badge>
               </IconButton>
             </Link>
             <Link to="/cart" style={{ textDecoration: "none" }}>
-              <IconButton size="large" color="inherit" edge="end" sx={{color:'grey.100'}}>
+              <IconButton size="large" color="inherit" edge="end" sx={{ color: "grey.100" }}>
                 <AccountCircle />
               </IconButton>
             </Link>
