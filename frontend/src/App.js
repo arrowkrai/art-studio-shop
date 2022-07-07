@@ -8,6 +8,9 @@ import CartPage from "./pages/CartPage";
 import { BrowserRouter, Routes, Route, useParams, useLocation } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import ProfilePage from "./pages/ProfilePage";
+import ShippingPage from "./pages/ShippingPage";
+import PaymentPage from "./pages/PaymentPage";
 
 const theme = createTheme({
   typography: {
@@ -36,6 +39,11 @@ const RegisterPageWrapper = () => {
   return <RegisterPage search={search} />;
 };
 
+const ProfilePageWrapper = () => {
+  const {search} = useLocation();
+  return <ProfilePage search={search} />;
+};
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -47,8 +55,12 @@ const App = () => {
           <Route path="/product/:id" element={<ProductPageWrapper />} />
           <Route path="/cart/:id" element={<CartPageWrapper />} />
           <Route path="/cart" element={<CartPageWrapper />} />
-          <Route path="/login" element={<LoginPageWrapper />} />
+          <Route path="/login/*" element={<LoginPageWrapper />} />
           <Route path="/register" element={<RegisterPageWrapper />} />
+          <Route path="/profile" element={<ProfilePageWrapper />} />
+          <Route path="/shipping" element={<ShippingPage />} />
+          <Route path="/payment" element={<PaymentPage />} />
+
         </Routes>
 
         <Footer />

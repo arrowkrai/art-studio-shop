@@ -211,11 +211,6 @@ const Header = () => {
                 </Link>
               </Tooltip>
             )}
-            <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={openSnackbar} autoHideDuration={5000} onClose={() => setOpenSnackbar(false)}>
-              <Alert onClose={() => setOpenSnackbar(false)} severity="success">
-                Logout Successful!
-              </Alert>
-            </Snackbar>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton size="large" onClick={handleMobileMenuOpen} color="inherit">
@@ -225,6 +220,11 @@ const Header = () => {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
+      <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={openSnackbar} autoHideDuration={5000} onClose={() => setOpenSnackbar(false)}>
+        <Alert onClose={() => setOpenSnackbar(false)} severity="success">
+          Logout Successful!
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };

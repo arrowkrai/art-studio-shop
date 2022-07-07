@@ -36,7 +36,6 @@ const CartPage = ({ id, search }) => {
   };
 
   const checkoutHandler = () => {
-    console.log("checkout");
     navigate("/login?redirect=shipping");
   };
 

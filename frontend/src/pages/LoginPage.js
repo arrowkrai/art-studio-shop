@@ -16,7 +16,7 @@ const LoginPage = ({ search }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
-  const redirect = search ? search.split("=")[1] : "/";
+  const redirect = search ? "/" + search.split("=")[1] : "/";
 
   useEffect(() => {
     if (userInfo) {
@@ -45,17 +45,7 @@ const LoginPage = ({ search }) => {
         {loading && <Loader />}
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField sx={{ backgroundColor: "grey.500" }} required fullWidth id="email" label="Email Address" name="email" autoFocus value={email} onChange={(e) => setEmail(e.target.value)} />
-          <TextField
-            sx={{ backgroundColor: "grey.500" }}
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <TextField sx={{ backgroundColor: "grey.500" }} required fullWidth name="password" label="Password" type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
             Sign In
           </Button>
