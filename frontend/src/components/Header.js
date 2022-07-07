@@ -23,8 +23,12 @@ import MoreVert from "@mui/icons-material/MoreVert";
 import westStudioLogo from "../assets/logo.svg";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../actions/userActions";
+import { Snackbar, Tooltip } from "@mui/material";
+import MuiAlert from "@mui/material/Alert";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -72,6 +76,7 @@ const Header = () => {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [openSnackbar, setOpenSnackbar] = React.useState(false);
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -85,6 +90,17 @@ const Header = () => {
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    setOpenSnackbar(true);
+  };
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} {...props} />;
+  });
 
   const mobileMenuId = "search-account-menu-mobile";
   const renderMobileMenu = (
@@ -116,7 +132,7 @@ const Header = () => {
         </Link>
       </MenuItem>
       <MenuItem>
-        <Link to={userInfo ? "/profile" : "/login"} style={{ textDecoration: "none", color: "black" }}>
+        <Link onClick={handleMobileMenuClose} to={userInfo ? "/profile" : "/login"} style={{ textDecoration: "none", color: "black" }}>
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <IconButton size="large" color="inherit">
               <AccountCircle />
@@ -125,6 +141,25 @@ const Header = () => {
           </Box>
         </Link>
       </MenuItem>
+      {userInfo && (
+        <MenuItem>
+          <Link
+            to="/"
+            onClick={() => {
+              handleLogout();
+              handleMobileMenuClose();
+            }}
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <IconButton size="large" color="inherit">
+                <LogoutIcon />
+              </IconButton>
+              <Typography sx={{ fontSize: "1.3rem" }}>Logout</Typography>
+            </Box>
+          </Link>
+        </MenuItem>
+      )}
     </Menu>
   );
 
@@ -149,23 +184,38 @@ const Header = () => {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Link to="/cart" style={{ textDecoration: "none" }}>
-              <IconButton size="large" color="inherit" sx={{ color: "grey.100" }}>
-                <Badge badgeContent={cartItems.length && cartItems.reduce((acc, item) => acc + item.qty, 0)} color="info">
-                  <ShoppingCartOutlinedIcon />
-                </Badge>
-              </IconButton>
-            </Link>
+            <Tooltip title="Cart">
+              <Link to="/cart" style={{ textDecoration: "none" }}>
+                <IconButton size="large" color="inherit" sx={{ color: "grey.100" }}>
+                  <Badge badgeContent={cartItems.length && cartItems.reduce((acc, item) => acc + item.qty, 0)} color="info">
+                    <ShoppingCartOutlinedIcon />
+                  </Badge>
+                </IconButton>
+              </Link>
+            </Tooltip>
 
-            
+            <Tooltip title={userInfo ? "Profile" : "Login"}>
+              <Link to={userInfo ? "/profile" : "/login"} style={{ textDecoration: "none" }}>
+                <IconButton size="large" color="inherit" edge={userInfo ? false : "end"} sx={{ color: "grey.100" }}>
+                  <AccountCircle />
+                </IconButton>
+              </Link>
+            </Tooltip>
 
-            <Link to={userInfo ? "/profile" : "/login"} style={{ textDecoration: "none" }}>
-              <IconButton size="large" color="inherit" edge="end" sx={{ color: "grey.100" }}>
-                <AccountCircle />
-              </IconButton>
-            </Link>
-
-
+            {userInfo && (
+              <Tooltip title="Logout">
+                <Link onClick={handleLogout} to="/" style={{ textDecoration: "none" }}>
+                  <IconButton size="large" color="inherit" edge="end" sx={{ color: "grey.100" }}>
+                    <LogoutIcon />
+                  </IconButton>
+                </Link>
+              </Tooltip>
+            )}
+            <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={openSnackbar} autoHideDuration={5000} onClose={() => setOpenSnackbar(false)}>
+              <Alert onClose={() => setOpenSnackbar(false)} severity="success">
+                Logout Successful!
+              </Alert>
+            </Snackbar>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton size="large" onClick={handleMobileMenuOpen} color="inherit">
