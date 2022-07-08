@@ -28,9 +28,11 @@ const PaymentPage = () => {
 
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
-      <Container maxWidth="sm">
+      <Container maxWidth="md">
         <CheckoutSteps step={1} />
-        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+      </Container>
+      <Container maxWidth="sm">
+        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 4 }}>
           <Typography variant="h3">Payment Method</Typography>
 
           <FormControl>
@@ -38,7 +40,6 @@ const PaymentPage = () => {
               <FormControlLabel value="PayPal" control={<Radio />} label="PayPal" />
             </RadioGroup>
           </FormControl>
-
           <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
             Continue
           </Button>

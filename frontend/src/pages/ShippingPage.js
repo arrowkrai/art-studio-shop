@@ -27,17 +27,21 @@ const ShippingPage = () => {
 
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
-      <Container maxWidth="sm">
+      <Container maxWidth="md">
         <CheckoutSteps step={0} />
-        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
-          <Typography variant="h3">Shipping</Typography>
+      </Container>
+      <Container maxWidth="sm">
+        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 4 }}>
+          <Typography variant="h4" sx={{ my: 2 }}>
+            Shipping
+          </Typography>
 
-          <TextField sx={{ backgroundColor: "grey.800", input: { color: "grey.100" }, ".MuiInputLabel-animated": { color: "grey.400" } }} required fullWidth color="info" id="address" label="Address" name="address" autoFocus value={address} onChange={(e) => setAddress(e.target.value)} />
-          <TextField sx={{ backgroundColor: "grey.800", input: { color: "grey.100" }, ".MuiInputLabel-animated": { color: "grey.400" } }} required fullWidth color="info" id="city" label="City" name="city" value={city} onChange={(e) => setCity(e.target.value)} />
-          <TextField sx={{ backgroundColor: "grey.800", input: { color: "grey.100" }, ".MuiInputLabel-animated": { color: "grey.400" } }} required fullWidth color="info" id="postalCode" label="Postal Code" name="postalCode" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} />
-          <TextField sx={{ backgroundColor: "grey.800", input: { color: "grey.100" }, ".MuiInputLabel-animated": { color: "grey.400" } }} required fullWidth color="info" id="country" label="Country" name="country" value={country} onChange={(e) => setCountry(e.target.value)} />
+          <TextField sx={{ my: 1, backgroundColor: "grey.800", input: { color: "grey.100" }, ".MuiInputLabel-animated": { color: "grey.400" }, ".MuiInputLabel-animated.Mui-focused": { color: "primary.light" } }} required fullWidth color="info" id="address" label="Address" name="address" autoFocus value={address} onChange={(e) => setAddress(e.target.value)} />
+          <TextField sx={{ my: 1, backgroundColor: "grey.800", input: { color: "grey.100" }, ".MuiInputLabel-animated": { color: "grey.400" }, ".MuiInputLabel-animated.Mui-focused": { color: "primary.light" } }} required fullWidth color="info" id="city" label="City" name="city" value={city} onChange={(e) => setCity(e.target.value)} />
+          <TextField sx={{ my: 1, backgroundColor: "grey.800", input: { color: "grey.100" }, ".MuiInputLabel-animated": { color: "grey.400" }, ".MuiInputLabel-animated.Mui-focused": { color: "primary.light" } }} required fullWidth color="info" id="postalCode" label="Postal Code" name="postalCode" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} />
+          <TextField sx={{ my: 1, backgroundColor: "grey.800", input: { color: "grey.100" }, ".MuiInputLabel-animated": { color: "grey.400" }, ".MuiInputLabel-animated.Mui-focused": { color: "primary.light" } }} required fullWidth color="info" id="country" label="Country" name="country" value={country} onChange={(e) => setCountry(e.target.value)} />
 
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+          <Button type="submit" fullWidth variant="contained" sx={{ my: 1, textTransform: "none" }}>
             Continue
           </Button>
         </Box>
