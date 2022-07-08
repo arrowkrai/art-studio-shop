@@ -53,7 +53,7 @@ const OrderPage = ({ id, search }) => {
 
   const handlePaymentSuccess = (paymentResult) => {
     console.log(paymentResult);
-    dispatch(payOrder(id));
+    dispatch(payOrder(id, paymentResult));
   };
 
   const theme = useTheme();
@@ -278,16 +278,16 @@ const OrderPage = ({ id, search }) => {
                     ${Number(order.totalPrice).toFixed(2)}
                   </Grid>
                 </Grid>
+                </Box>
 
                 {!order.isPaid && (
                   <Grid container>
-                    <Grid item sm={12}>
+                    <Grid item sm={12} sx={{mt:2}}>
                       {loadingPay && <Loader />}
                       {!sdkReady ? <Loader /> : <PayPalButton amount={order.totalPrice} onSuccess={handlePaymentSuccess} />}
                     </Grid>
                   </Grid>
                 )}
-              </Box>
 
               {error && (
                 <Message

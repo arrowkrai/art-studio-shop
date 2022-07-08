@@ -29,6 +29,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/userActions";
 import { Snackbar, Tooltip } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import InventoryIcon from '@mui/icons-material/Inventory';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -184,6 +187,32 @@ const Header = () => {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            {userInfo && userInfo.isAdmin && (
+              <Box>
+                <Tooltip title="User List">
+                  <Link to="/userlist" style={{ textDecoration: "none" }}>
+                    <IconButton size="large" color="error" sx={{ color: "error" }}>
+                      <SupervisorAccountIcon />
+                    </IconButton>
+                  </Link>
+                </Tooltip>
+                <Tooltip title="Product List">
+                  <Link to="/userlist" style={{ textDecoration: "none" }}>
+                    <IconButton size="large" color="error" sx={{ color: "error" }}>
+                      <InventoryIcon />
+                    </IconButton>
+                  </Link>
+                </Tooltip>
+                <Tooltip title="Order List">
+                  <Link to="/userlist" style={{ textDecoration: "none" }}>
+                    <IconButton size="large" color="error" sx={{ color: "error" }}>
+                      <AdminPanelSettingsIcon />
+                    </IconButton>
+                  </Link>
+                </Tooltip>
+              </Box>
+            )}
+
             <Tooltip title="Cart">
               <Link to="/cart" style={{ textDecoration: "none" }}>
                 <IconButton size="large" color="inherit" sx={{ color: "grey.100" }}>
