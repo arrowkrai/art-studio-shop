@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../components/Message";
 import { addToCart, removeFromCart } from "../actions/cartActions";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import Grid from "@mui/material/Grid";
-import Container from "@mui/material/Container";
-import FormControl from "@mui/material/FormControl";
-import List from "@mui/material/List";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
+import {
+  Box,
+  Button,
+  Container,
+  IconButton,
+  Typography,
+  Grid,
+  FormControl,
+  List,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import { FaTrash } from "react-icons/fa";
 
@@ -43,7 +44,7 @@ const CartPage = ({ id, search }) => {
     if (productId) {
       dispatch(addToCart(id, qty, frame));
     }
-  }, [dispatch, productId, qty, frame]);
+  }, [dispatch, productId, qty, frame, id]);
 
   const theme = useTheme();
 

@@ -4,19 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
-import {
-  Box,
-  Button,
-  Checkbox,
-  Container,
-  FormControl,
-  FormControlLabel,
-  Grid,
-  List,
-  ListItem,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Container, Grid, List, ListItem, TextField, Typography } from "@mui/material";
 import { getProfileOrders } from "../actions/orderActions";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";

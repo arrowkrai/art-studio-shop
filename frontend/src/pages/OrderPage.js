@@ -5,19 +5,7 @@ import axios from "axios";
 import { PayPalButton } from "react-paypal-button-v2";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import {
-  Alert,
-  Box,
-  Button,
-  Container,
-  FormControl,
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
 import { saveShippingAddress } from "../actions/cartActions";
 import { getOrderDetails, payOrder } from "../actions/orderActions";
 import { useTheme } from "@mui/material/styles";

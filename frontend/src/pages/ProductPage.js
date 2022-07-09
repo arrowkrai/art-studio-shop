@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from "react";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import {
+  Box,
+  Grid,
+  List,
+  ListItem,
+  Button,
+  Typography,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  FormControl,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import ProductRating from "../components/ProductRating";
 import { FaLeaf, FaPaintBrush, FaImage } from "react-icons/fa";
 import { BsBrush, BsPrinterFill } from "react-icons/bs";
 import { IoIosContrast } from "react-icons/io";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./ProductPage.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,9 +25,6 @@ import { Link, useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import FormControl from "@mui/material/FormControl";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import "./ProductPage.css";
 import { useTheme } from "@mui/material/styles";

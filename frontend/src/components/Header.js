@@ -208,14 +208,14 @@ const Header = () => {
                   </Link>
                 </Tooltip>
                 <Tooltip title="Product List">
-                  <Link to="/admin/userlist" style={{ textDecoration: "none" }}>
+                  <Link to="/admin/productlist" style={{ textDecoration: "none" }}>
                     <IconButton size="large" color="error" sx={{ color: "error" }}>
                       <InventoryIcon />
                     </IconButton>
                   </Link>
                 </Tooltip>
                 <Tooltip title="Order List">
-                  <Link to="/admin/userlist" style={{ textDecoration: "none" }}>
+                  <Link to="/admin/orderlist" style={{ textDecoration: "none" }}>
                     <IconButton size="large" color="error" sx={{ color: "error" }}>
                       <AdminPanelSettingsIcon />
                     </IconButton>
