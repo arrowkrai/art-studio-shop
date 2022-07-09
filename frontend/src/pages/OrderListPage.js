@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { listUsers, deleteUser } from "../actions/userActions";
+import { listOrders } from "../actions/orderActions";
+import { Link, useNavigate } from "react-router-dom";
+import { FaTimes } from "react-icons/fa";
 import {
   Box,
   Button,
@@ -33,39 +34,30 @@ const theme = createTheme({
   },
 });
 
-const UserListPage = () => {
-  const navigate = useNavigate();
+const OrderListPage = ({}) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const userList = useSelector((state) => state.userList);
-  const { loading, error, users } = userList;
+  const orderList = useSelector((state) => state.orderList);
+  const { loading, error, orders } = orderList;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const userDelete = useSelector((state) => state.userDelete);
-  const { success: successDelete } = userDelete;
-
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
-      dispatch(listUsers());
+      dispatch(listOrders());
     } else {
       navigate("/login");
     }
-  }, [dispatch, userInfo, successDelete, navigate]);
-
-  const handleDelete = (id) => {
-    if (window.confirm("Are you sure")) {
-      dispatch(deleteUser(id));
-    }
-  };
+  }, [dispatch, navigate, userInfo]);
 
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
       <ThemeProvider theme={theme}>
         <Container maxWidth="xl">
           <Typography variant="h4" sx={{ mb: 3 }}>
-            Users
+            Orders
           </Typography>
           {loading ? (
             <Loader />
@@ -77,28 +69,34 @@ const UserListPage = () => {
                 <TableHead>
                   <TableRow>
                     <TableCell>ID</TableCell>
-                    <TableCell align="right">NAME</TableCell>
-                    <TableCell align="right">EMAIL</TableCell>
-                    <TableCell align="right">ADMIN</TableCell>
+                    <TableCell align="right">USER</TableCell>
+                    <TableCell align="right">DATE</TableCell>
+                    <TableCell align="right">TOTAL</TableCell>
+                    <TableCell align="right">PAID</TableCell>
+                    <TableCell align="right">DELIVERED</TableCell>
                     <TableCell align="right"></TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {users.map((user) => (
-                    <TableRow key={user._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                  {orders.map((order) => (
+                    <TableRow key={order._id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                       <TableCell component="th" scope="row">
-                        {user._id}
+                        {order._id}
                       </TableCell>
-                      <TableCell align="right">{user.name}</TableCell>
-                      <TableCell align="right">{user.email}</TableCell>
-                      <TableCell align="right">{user.isAdmin ? <strong>ADMIN</strong> : "USER"}</TableCell>
+                      <TableCell align="right">{order.user && order.user.name}</TableCell>
+                      <TableCell align="right">{order.createdAt.substring(0, 10)}</TableCell>
+                      <TableCell align="right">{order.totalPrice}</TableCell>
                       <TableCell align="right">
-                        <Link to={`/admin/user/${user._id}/edit`}>
-                          <Button>Edit</Button>
+                        {order.isPaid ? order.paidAt.substring(0, 10) : <FaTimes style={{ color: "red" }} />}
+                      </TableCell>
+                      <TableCell align="right">
+                        {order.isDelivered ? order.deliveredAt.substring(0, 10) : <FaTimes style={{ color: "red" }} />}
+                      </TableCell>
+
+                      <TableCell align="right">
+                        <Link to={`/order/${order._id}`}>
+                          <Button>Details</Button>
                         </Link>
-                        <Button color="error" onClick={() => handleDelete(user._id)}>
-                          Delete
-                        </Button>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -112,4 +110,4 @@ const UserListPage = () => {
   );
 };
 
-export default UserListPage;
+export default OrderListPage;

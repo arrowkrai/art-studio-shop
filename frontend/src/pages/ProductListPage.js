@@ -90,7 +90,7 @@ const ProductListPage = ({ id }) => {
             <Message variant="error" text={error} />
           ) : (
             <TableContainer sx={{ border: "1px solid white" }}>
-              <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+              <Table sx={{ minWidth: 650 }} size="small">
                 <TableHead>
                   <TableRow>
                     <TableCell>ID</TableCell>

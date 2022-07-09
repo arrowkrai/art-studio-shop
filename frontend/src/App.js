@@ -17,6 +17,7 @@ import UserListPage from "./pages/UserListPage";
 import UserEditPage from "./pages/UserEditPage";
 import ProductListPage from "./pages/ProductListPage";
 import ProductEditPage from "./pages/ProductEditPage";
+import OrderListPage from "./pages/OrderListPage";
 
 const theme = createTheme({
   typography: {
@@ -93,6 +94,7 @@ const App = () => {
           <Route path="/admin/user/:id/edit" element={<UserEditPageWrapper />} />
           <Route path="/admin/productlist" element={<ProductListPageWrapper />} />
           <Route path='/admin/product/:id/edit' element={<ProductEditPageWrapper />} />
+          <Route path="/admin/orderlist" element={<OrderListPage />} />
         </Routes>
 
         <Footer />

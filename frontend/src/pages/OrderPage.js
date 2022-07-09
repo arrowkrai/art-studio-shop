@@ -5,12 +5,12 @@ import axios from "axios";
 import { PayPalButton } from "react-paypal-button-v2";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import { saveShippingAddress } from "../actions/cartActions";
-import { getOrderDetails, payOrder } from "../actions/orderActions";
+import { getOrderDetails, payOrder, deliverOrder } from "../actions/orderActions";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { ORDER_PAY_RESET } from "../constants/orderConstants";
+import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from "../constants/orderConstants";
 
 const OrderPage = ({ id, search }) => {
   const dispatch = useDispatch();
@@ -22,9 +22,19 @@ const OrderPage = ({ id, search }) => {
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success } = orderPay;
 
+  const orderDeliver = useSelector((state) => state.orderDeliver);
+  const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const [sdkReady, setSdkReady] = useState(false);
 
   useEffect(() => {
+    if (!userInfo) {
+      navigate("/login");
+    }
+
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get("/api/config/paypal");
       const script = document.createElement("script");
@@ -39,8 +49,9 @@ const OrderPage = ({ id, search }) => {
 
     // addPayPalScript();
 
-    if (!order || success) {
+    if (!order || success || successDeliver) {
       dispatch({ type: ORDER_PAY_RESET });
+      dispatch({ type: ORDER_DELIVER_RESET });
       dispatch(getOrderDetails(id));
     } else if (!order.isPaid) {
       if (!window.paypal) {
@@ -49,11 +60,15 @@ const OrderPage = ({ id, search }) => {
         setSdkReady(true);
       }
     }
-  }, [dispatch, id, success, order]);
+  }, [dispatch, id, success, successDeliver, order]);
 
   const handlePaymentSuccess = (paymentResult) => {
     console.log(paymentResult);
     dispatch(payOrder(id, paymentResult));
+  };
+
+  const handleDeliver = () => {
+    dispatch(deliverOrder(order));
   };
 
   const theme = useTheme();
@@ -339,6 +354,11 @@ const OrderPage = ({ id, search }) => {
                     )}
                   </Grid>
                 </Grid>
+              )}
+
+              {loadingDeliver && <Loader />}
+              {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                <Button onClick={handleDeliver}>Mark As Delivered</Button>
               )}
 
               {error && <Message variant="error" text={error} />}
