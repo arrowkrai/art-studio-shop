@@ -14,6 +14,7 @@ import PaymentPage from "./pages/PaymentPage";
 import PlaceOrderPage from "./pages/PlaceOrderPage";
 import OrderPage from "./pages/OrderPage";
 import UserListPage from "./pages/UserListPage";
+import UserEditPage from "./pages/UserEditPage";
 
 const theme = createTheme({
   typography: {
@@ -48,9 +49,14 @@ const ProfilePageWrapper = () => {
 };
 
 const OrderPageWrapper = () => {
-  const {id} = useParams()
+  const { id } = useParams();
   const { search } = useLocation();
   return <OrderPage id={id} search={search} />;
+};
+
+const UserEditPageWrapper = () => {
+  const { id } = useParams();
+  return <UserEditPage id={id} />;
 };
 
 const App = () => {
@@ -72,6 +78,7 @@ const App = () => {
           <Route path="/placeorder" element={<PlaceOrderPage />} />
           <Route path="/order/:id" element={<OrderPageWrapper />} />
           <Route path="/admin/userlist" element={<UserListPage />} />
+          <Route path="/admin/user/:id/edit" element={<UserEditPageWrapper />} />
         </Routes>
 
         <Footer />

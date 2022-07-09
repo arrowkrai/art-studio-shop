@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { listUsers } from "../actions/userActions";
+import { listUsers, deleteUser } from "../actions/userActions";
 import { Box, Button, Container, createTheme, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, ThemeProvider, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
@@ -30,15 +30,22 @@ const UserListPage = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const userDelete = useSelector((state) => state.userDelete)
+  const { success: successDelete } = userDelete
+
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listUsers());
     } else {
       navigate("/login");
     }
-  }, [dispatch, userInfo]);
+  }, [dispatch, userInfo, successDelete, navigate]);
 
-  const handleDelete = (id) => {};
+  const handleDelete = (id) => {
+    if (window.confirm('Are you sure')) {
+      dispatch(deleteUser(id))
+    }
+  };
 
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
@@ -73,7 +80,7 @@ const UserListPage = () => {
                       <TableCell align="right">{user.email}</TableCell>
                       <TableCell align="right">{user.isAdmin ? <strong>ADMIN</strong> : "USER"}</TableCell>
                       <TableCell align="right">
-                        <Link to={`/user/${user._id}/edit`}>
+                        <Link to={`/admin/user/${user._id}/edit`}>
                           <Button>Edit</Button>
                         </Link>
                         <Button color="error" onClick={() => handleDelete(user._id)}>
