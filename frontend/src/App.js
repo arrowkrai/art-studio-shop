@@ -16,6 +16,7 @@ import OrderPage from "./pages/OrderPage";
 import UserListPage from "./pages/UserListPage";
 import UserEditPage from "./pages/UserEditPage";
 import ProductListPage from "./pages/ProductListPage";
+import ProductEditPage from "./pages/ProductEditPage";
 
 const theme = createTheme({
   typography: {
@@ -60,9 +61,14 @@ const UserEditPageWrapper = () => {
   return <UserEditPage id={id} />;
 };
 
-const ProductListWrapper = () => {
+const ProductListPageWrapper = () => {
   const { id } = useParams();
   return <ProductListPage id={id} />;
+};
+
+const ProductEditPageWrapper = () => {
+  const { id } = useParams();
+  return <ProductEditPage id={id} />;
 };
 
 const App = () => {
@@ -85,7 +91,8 @@ const App = () => {
           <Route path="/order/:id" element={<OrderPageWrapper />} />
           <Route path="/admin/userlist" element={<UserListPage />} />
           <Route path="/admin/user/:id/edit" element={<UserEditPageWrapper />} />
-          <Route path="/admin/productlist" element={<ProductListWrapper />} />
+          <Route path="/admin/productlist" element={<ProductListPageWrapper />} />
+          <Route path='/admin/product/:id/edit' element={<ProductEditPageWrapper />} />
         </Routes>
 
         <Footer />

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { listProducts } from "../actions/productActions";
+import { listProducts, deleteProduct, createProduct } from "../actions/productActions";
 import {
   Box,
   Button,
@@ -19,6 +19,7 @@ import {
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { Link, useNavigate } from "react-router-dom";
+import { PRODUCT_CREATE_RESET } from "../constants/productConstants";
 
 const theme = createTheme({
   components: {
@@ -43,20 +44,33 @@ const ProductListPage = ({ id }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const productDelete = useSelector((state) => state.productDelete);
+  const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete;
+
+  const productCreate = useSelector((state) => state.productCreate);
+  const { loading: loadingCreate, error: errorCreate, success: successCreate, product: createdProduct } = productCreate;
+
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listProducts());
-    } else {
+    dispatch({ type: PRODUCT_CREATE_RESET });
+    if (!userInfo.isAdmin) {
       navigate("/login");
     }
-  }, [dispatch, navigate, userInfo]);
+    if (successCreate) {
+      navigate(`/admin/product/${createdProduct._id}/edit`);
+    } else {
+      dispatch(listProducts());
+    }
+  }, [dispatch, navigate, userInfo, successDelete, successCreate, createdProduct]);
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure?")) {
+      dispatch(deleteProduct(id));
     }
   };
 
-  const handleCreateProduct = (product) => {};
+  const handleCreateProduct = (product) => {
+    dispatch(createProduct());
+  };
 
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
@@ -66,6 +80,10 @@ const ProductListPage = ({ id }) => {
             Products
           </Typography>
           <Button onClick={handleCreateProduct}>Create Product</Button>
+          {loadingDelete && <Loader />}
+          {errorDelete && <Message variant="error" text={errorDelete} />}
+          {loadingCreate && <Loader />}
+          {errorCreate && <Message variant="error" text={errorCreate} />}
           {loading ? (
             <Loader />
           ) : error ? (
