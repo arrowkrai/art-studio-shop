@@ -70,7 +70,10 @@ const CartPage = ({ id, search }) => {
           <Typography>
             Your cart is empty
             <Link to="/" style={{ textDecoration: "none" }}>
-              <Typography component="span" sx={{ ml:1, color: "primary.light", "&:hover": { textDecoration: "underline" } }}>
+              <Typography
+                component="span"
+                sx={{ ml: 1, color: "primary.light", "&:hover": { textDecoration: "underline" } }}
+              >
                 Go Back
               </Typography>
             </Link>
@@ -97,7 +100,13 @@ const CartPage = ({ id, search }) => {
                     </Grid>
                   </Grid>
                   {cartItems.map((item) => (
-                    <Grid key={item.name} container justifyContent="center" alignItems="center" sx={{ backgroundColor: "grey.900", mt: "2px" }}>
+                    <Grid
+                      key={item.name}
+                      container
+                      justifyContent="center"
+                      alignItems="center"
+                      sx={{ backgroundColor: "grey.900", mt: "2px" }}
+                    >
                       <Grid item xs={3} sx={{ p: 1 }}>
                         <Link to={`/product/${item.product}`}>
                           <img src={item.image} alt={item.name} style={{ width: "100%" }} />
@@ -105,7 +114,10 @@ const CartPage = ({ id, search }) => {
                       </Grid>
                       <Grid item xs={5} sx={{ justifyContent: "center", p: 1 }}>
                         <Link to={`/product/${item.product}`} style={{ textDecoration: "none" }}>
-                          <Typography color="primary.light" sx={{ fontSize: 16 * smallFontMultiplier, "&:hover": { textDecoration: "underline" } }}>
+                          <Typography
+                            color="primary.light"
+                            sx={{ fontSize: 16 * smallFontMultiplier, "&:hover": { textDecoration: "underline" } }}
+                          >
                             {item.name}
                           </Typography>
                         </Link>
@@ -130,7 +142,12 @@ const CartPage = ({ id, search }) => {
                       <Grid item xs={2 + smallPaddingBetween} sx={{ p: 1 }}>
                         <FormControl size="small" variant="outlined" sx={{ width: 60 }}>
                           <Select
-                            sx={{ backgroundColor: "#374151", color: "grey.100", fontSize: 16 * smallFontMultiplier, icon: { fill: "white" } }}
+                            sx={{
+                              backgroundColor: "#374151",
+                              color: "grey.100",
+                              fontSize: 16 * smallFontMultiplier,
+                              icon: { fill: "white" },
+                            }}
                             id="qty-select"
                             value={item.qty}
                             onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value), item.frame))}
@@ -144,7 +161,11 @@ const CartPage = ({ id, search }) => {
                         </FormControl>
                       </Grid>
                       <Grid item xs={1}>
-                        <IconButton onClick={() => removeFromCartHandler(item.product)} size="small" sx={{ color: "grey.100", fontSize: 16 * smallFontMultiplier }}>
+                        <IconButton
+                          onClick={() => removeFromCartHandler(item.product)}
+                          size="small"
+                          sx={{ color: "grey.100", fontSize: 16 * smallFontMultiplier }}
+                        >
                           <FaTrash />
                         </IconButton>
                       </Grid>
@@ -160,14 +181,28 @@ const CartPage = ({ id, search }) => {
                       <Typography sx={{ color: "grey.400", fontSize: 16 * smallFontMultiplier }}>Items</Typography>
                     </Grid>
                     <Grid item xs={2}>
-                      <Typography sx={{ color: "grey.400", textAlign: "center", px: 1, fontSize: 16 * smallFontMultiplier }}>Qty</Typography>
+                      <Typography
+                        sx={{ color: "grey.400", textAlign: "center", px: 1, fontSize: 16 * smallFontMultiplier }}
+                      >
+                        Qty
+                      </Typography>
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography sx={{ color: "grey.400", textAlign: "right", pr: 2, fontSize: 16 * smallFontMultiplier }}>Price</Typography>
+                      <Typography
+                        sx={{ color: "grey.400", textAlign: "right", pr: 2, fontSize: 16 * smallFontMultiplier }}
+                      >
+                        Price
+                      </Typography>
                     </Grid>
                   </Grid>
                   {cartItems.map((item) => (
-                    <Grid key={item.name} container justifyContent="space-between" alignItems="center" sx={{ backgroundColor: "grey.900", mt: "2px" }}>
+                    <Grid
+                      key={item.name}
+                      container
+                      justifyContent="space-between"
+                      alignItems="center"
+                      sx={{ backgroundColor: "grey.900", mt: "2px" }}
+                    >
                       <Grid item xs={7} sx={{ justifyContent: "center", p: 1 }}>
                         <Typography noWrap sx={{ color: "grey.300", fontSize: 14 * smallFontMultiplier }}>
                           {item.name}{" "}
@@ -178,34 +213,66 @@ const CartPage = ({ id, search }) => {
                         </Typography>
                       </Grid>
 
-                      <Grid item xs={2} sx={{ color: "grey.300", textAlign: "center", pl: 2, fontSize: 16 * smallFontMultiplier }}>
+                      <Grid
+                        item
+                        xs={2}
+                        sx={{ color: "grey.300", textAlign: "center", pl: 2, fontSize: 16 * smallFontMultiplier }}
+                      >
                         {item.qty}
                       </Grid>
 
-                      <Grid item xs={3} sx={{ color: "grey.300", pr: 1, textAlign: "right", fontSize: 16 * smallFontMultiplier }}>
+                      <Grid
+                        item
+                        xs={3}
+                        sx={{ color: "grey.300", pr: 1, textAlign: "right", fontSize: 16 * smallFontMultiplier }}
+                      >
                         ${item.frame ? (item.price + 10).toFixed(2) : item.price.toFixed(2)}
                       </Grid>
                     </Grid>
                   ))}
 
-                  <Grid container justifyContent="space-between" alignItems="center" sx={{ backgroundColor: "grey.900", mt: "2px" }}>
+                  <Grid
+                    container
+                    justifyContent="space-between"
+                    alignItems="center"
+                    sx={{ backgroundColor: "grey.900", mt: "2px" }}
+                  >
                     <Grid item sm={9} sx={{ justifyContent: "left", p: 1 }}>
                       <Typography sx={{ color: "grey.200", fontSize: 16 * smallFontMultiplier }}>SUBTOTAL</Typography>
                     </Grid>
 
                     <Grid item sm={3} sx={{ pr: 1, textAlign: "right", fontSize: 16 * smallFontMultiplier }}>
-                      ${cartItems.reduce((acc, item) => acc + item.qty * (item.frame ? item.price + 10 : item.price), 0).toFixed(2)}
+                      $
+                      {cartItems
+                        .reduce((acc, item) => acc + item.qty * (item.frame ? item.price + 10 : item.price), 0)
+                        .toFixed(2)}
                     </Grid>
                   </Grid>
                 </Box>
 
                 {cartItems.length > 0 ? (
-                  <Button fullWidth size="large" variant="contained" sx={{ textTransform: "none", mt: 1 }} onClick={checkoutHandler}>
+                  <Button
+                    fullWidth
+                    size="large"
+                    variant="contained"
+                    sx={{ textTransform: "none", mt: 1 }}
+                    onClick={checkoutHandler}
+                  >
                     <ShoppingCartCheckoutIcon style={{ marginRight: "5px" }} />
                     Proceed to Checkout
                   </Button>
                 ) : (
-                  <Button fullWidth size="large" variant="contained" disabled sx={{ mt: 1, textTransform: "none", "&.Mui-disabled": { backgroundColor: "grey.800", color: "grey.300" } }}>
+                  <Button
+                    fullWidth
+                    size="large"
+                    variant="contained"
+                    disabled
+                    sx={{
+                      mt: 1,
+                      textTransform: "none",
+                      "&.Mui-disabled": { backgroundColor: "grey.800", color: "grey.300" },
+                    }}
+                  >
                     Cart is empty
                   </Button>
                 )}

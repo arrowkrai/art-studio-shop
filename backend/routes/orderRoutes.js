@@ -4,7 +4,7 @@ import { addOrderItems, getOrderById, updateOrderAsPaid, getProfileOrders } from
 import { protect } from "../middleware/authMiddleware.js";
 
 router.route("/").post(protect, addOrderItems);
-router.route("/profileorders").get(protect, getProfileOrders)
+router.route("/profileorders").get(protect, getProfileOrders);
 router.route("/:id").get(protect, getOrderById);
 router.route("/:id/pay").put(protect, updateOrderAsPaid);
 export default router;

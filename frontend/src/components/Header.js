@@ -30,8 +30,8 @@ import { logout } from "../actions/userActions";
 import { Snackbar, Tooltip } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
-import InventoryIcon from '@mui/icons-material/Inventory';
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
+import InventoryIcon from "@mui/icons-material/Inventory";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -135,7 +135,11 @@ const Header = () => {
         </Link>
       </MenuItem>
       <MenuItem>
-        <Link onClick={handleMobileMenuClose} to={userInfo ? "/profile" : "/login"} style={{ textDecoration: "none", color: "black" }}>
+        <Link
+          onClick={handleMobileMenuClose}
+          to={userInfo ? "/profile" : "/login"}
+          style={{ textDecoration: "none", color: "black" }}
+        >
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <IconButton size="large" color="inherit">
               <AccountCircle />
@@ -179,7 +183,14 @@ const Header = () => {
           {/* <Typography variant="h6" noWrap sx={{ display: { xs: "none", sm: "block" }, mx: '1rem' }}>
             West Studio
           </Typography> */}
-          <Search sx={{ backgroundColor: "grey.800", borderRadius: "24px", ml: 2, "&:hover": { backgroundColor: "grey.800" } }}>
+          <Search
+            sx={{
+              backgroundColor: "grey.800",
+              borderRadius: "24px",
+              ml: 2,
+              "&:hover": { backgroundColor: "grey.800" },
+            }}
+          >
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -216,7 +227,10 @@ const Header = () => {
             <Tooltip title="Cart">
               <Link to="/cart" style={{ textDecoration: "none" }}>
                 <IconButton size="large" color="inherit" sx={{ color: "grey.100" }}>
-                  <Badge badgeContent={cartItems.length && cartItems.reduce((acc, item) => acc + item.qty, 0)} color="info">
+                  <Badge
+                    badgeContent={cartItems.length && cartItems.reduce((acc, item) => acc + item.qty, 0)}
+                    color="info"
+                  >
                     <ShoppingCartOutlinedIcon />
                   </Badge>
                 </IconButton>
@@ -249,7 +263,12 @@ const Header = () => {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={openSnackbar} autoHideDuration={5000} onClose={() => setOpenSnackbar(false)}>
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={openSnackbar}
+        autoHideDuration={5000}
+        onClose={() => setOpenSnackbar(false)}
+      >
         <Alert onClose={() => setOpenSnackbar(false)} severity="success">
           Logout Successful!
         </Alert>

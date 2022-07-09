@@ -4,7 +4,20 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { listUsers, deleteUser } from "../actions/userActions";
-import { Box, Button, Container, createTheme, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, ThemeProvider, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  createTheme,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  ThemeProvider,
+  Typography,
+} from "@mui/material";
 import { grey } from "@mui/material/colors";
 
 const theme = createTheme({
@@ -30,8 +43,8 @@ const UserListPage = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const userDelete = useSelector((state) => state.userDelete)
-  const { success: successDelete } = userDelete
+  const userDelete = useSelector((state) => state.userDelete);
+  const { success: successDelete } = userDelete;
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
@@ -42,8 +55,8 @@ const UserListPage = () => {
   }, [dispatch, userInfo, successDelete, navigate]);
 
   const handleDelete = (id) => {
-    if (window.confirm('Are you sure')) {
-      dispatch(deleteUser(id))
+    if (window.confirm("Are you sure")) {
+      dispatch(deleteUser(id));
     }
   };
 

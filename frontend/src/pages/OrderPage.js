@@ -5,7 +5,19 @@ import axios from "axios";
 import { PayPalButton } from "react-paypal-button-v2";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { Alert, Box, Button, Container, FormControl, Grid, List, ListItem, ListItemText, TextField, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  Container,
+  FormControl,
+  Grid,
+  List,
+  ListItem,
+  ListItemText,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { saveShippingAddress } from "../actions/cartActions";
 import { getOrderDetails, payOrder } from "../actions/orderActions";
 import { useTheme } from "@mui/material/styles";
@@ -83,37 +95,63 @@ const OrderPage = ({ id, search }) => {
             </Grid>
             <Grid item xs={12}>
               <Grid item xs={8} sx={{ pr: 1, mb: 2 }}>
-                {order.isDelivered ? <Message variant="success" text="Delivered!" /> : order.isPaid ? <Message variant="success" text="Order Confirmed!" /> : <Message variant="error" text="Order Not Paid!" />}
+                {order.isDelivered ? (
+                  <Message variant="success" text="Delivered!" />
+                ) : order.isPaid ? (
+                  <Message variant="success" text="Order Confirmed!" />
+                ) : (
+                  <Message variant="error" text="Order Not Paid!" />
+                )}
               </Grid>
             </Grid>
             <Grid item md={8} sx={{ pr: mediumPadding }}>
               <Box sx={{ backgroundColor: "#374151", border: "2px solid", borderColor: "#374151" }}>
                 <Grid container sx={{ m: 1 }}>
                   <Grid item xs={4}>
-                    <Typography sx={{ color: "grey.400", fontSize: 16 * smallFontMultiplier }}>Delivery Address</Typography>
+                    <Typography sx={{ color: "grey.400", fontSize: 16 * smallFontMultiplier }}>
+                      Delivery Address
+                    </Typography>
                   </Grid>
                   <Grid item xs={4}>
-                    <Typography sx={{ color: "grey.400", fontSize: 16 * smallFontMultiplier }}>Account Details</Typography>
+                    <Typography sx={{ color: "grey.400", fontSize: 16 * smallFontMultiplier }}>
+                      Account Details
+                    </Typography>
                   </Grid>
                   <Grid item xs={4}>
-                    <Typography sx={{ color: "grey.400", fontSize: 16 * smallFontMultiplier }}>Payment Method</Typography>
+                    <Typography sx={{ color: "grey.400", fontSize: 16 * smallFontMultiplier }}>
+                      Payment Method
+                    </Typography>
                   </Grid>
                 </Grid>
 
                 <Grid container>
                   <Grid item xs={4} container sx={{ backgroundColor: "grey.900", mt: "2px", display: "block", p: 1 }}>
-                    <Typography sx={{ color: "grey.300", fontSize: 16 * smallFontMultiplier }}>{order.shippingAddress.address}</Typography>
-                    <Typography sx={{ color: "grey.300", fontSize: 16 * smallFontMultiplier }}>{order.shippingAddress.city}</Typography>
-                    <Typography sx={{ color: "grey.300", fontSize: 16 * smallFontMultiplier }}>{order.shippingAddress.postalCode}</Typography>
-                    <Typography sx={{ color: "grey.300", fontSize: 16 * smallFontMultiplier }}>{order.shippingAddress.country}</Typography>
+                    <Typography sx={{ color: "grey.300", fontSize: 16 * smallFontMultiplier }}>
+                      {order.shippingAddress.address}
+                    </Typography>
+                    <Typography sx={{ color: "grey.300", fontSize: 16 * smallFontMultiplier }}>
+                      {order.shippingAddress.city}
+                    </Typography>
+                    <Typography sx={{ color: "grey.300", fontSize: 16 * smallFontMultiplier }}>
+                      {order.shippingAddress.postalCode}
+                    </Typography>
+                    <Typography sx={{ color: "grey.300", fontSize: 16 * smallFontMultiplier }}>
+                      {order.shippingAddress.country}
+                    </Typography>
                   </Grid>
 
                   <Grid item xs={4} container sx={{ backgroundColor: "grey.900", mt: "2px", display: "block", p: 1 }}>
-                    <Typography sx={{ color: "grey.300", fontSize: 16 * smallFontMultiplier }}>{order.user.name}</Typography>
-                    <Typography sx={{ color: "grey.300", fontSize: 16 * smallFontMultiplier }}>{order.user.email}</Typography>
+                    <Typography sx={{ color: "grey.300", fontSize: 16 * smallFontMultiplier }}>
+                      {order.user.name}
+                    </Typography>
+                    <Typography sx={{ color: "grey.300", fontSize: 16 * smallFontMultiplier }}>
+                      {order.user.email}
+                    </Typography>
                   </Grid>
                   <Grid item xs={4} container sx={{ backgroundColor: "grey.900", mt: "2px", display: "block", p: 1 }}>
-                    <Typography sx={{ color: "grey.300", fontSize: 16 * smallFontMultiplier }}>{order.paymentMethod}</Typography>
+                    <Typography sx={{ color: "grey.300", fontSize: 16 * smallFontMultiplier }}>
+                      {order.paymentMethod}
+                    </Typography>
                   </Grid>
                 </Grid>
               </Box>
@@ -137,7 +175,13 @@ const OrderPage = ({ id, search }) => {
                 </Grid>
 
                 {order.orderItems.map((item) => (
-                  <Grid key={item.name} container justifyContent="center" alignItems="center" sx={{ backgroundColor: "grey.900", mt: "2px" }}>
+                  <Grid
+                    key={item.name}
+                    container
+                    justifyContent="center"
+                    alignItems="center"
+                    sx={{ backgroundColor: "grey.900", mt: "2px" }}
+                  >
                     <Grid item xs={3} sx={{ p: 1 }}>
                       <Link to={`/product/${item.product}`}>
                         <img src={item.image} alt={item.name} style={{ width: "100%" }} />
@@ -145,7 +189,10 @@ const OrderPage = ({ id, search }) => {
                     </Grid>
                     <Grid item xs={7} sx={{ justifyContent: "center", p: 1 }}>
                       <Link to={`/product/${item.product}`} style={{ textDecoration: "none" }}>
-                        <Typography color="primary.light" sx={{ fontSize: 16 * smallFontMultiplier, "&:hover": { textDecoration: "underline" } }}>
+                        <Typography
+                          color="primary.light"
+                          sx={{ fontSize: 16 * smallFontMultiplier, "&:hover": { textDecoration: "underline" } }}
+                        >
                           {item.name}
                         </Typography>
                       </Link>
@@ -181,14 +228,28 @@ const OrderPage = ({ id, search }) => {
                     <Typography sx={{ color: "grey.400", fontSize: 16 * smallFontMultiplier }}>Items</Typography>
                   </Grid>
                   <Grid item xs={2}>
-                    <Typography sx={{ color: "grey.400", textAlign: "center", px: 1, fontSize: 16 * smallFontMultiplier }}>Qty</Typography>
+                    <Typography
+                      sx={{ color: "grey.400", textAlign: "center", px: 1, fontSize: 16 * smallFontMultiplier }}
+                    >
+                      Qty
+                    </Typography>
                   </Grid>
                   <Grid item xs={3}>
-                    <Typography sx={{ color: "grey.400", textAlign: "right", pr: 2, fontSize: 16 * smallFontMultiplier }}>Price</Typography>
+                    <Typography
+                      sx={{ color: "grey.400", textAlign: "right", pr: 2, fontSize: 16 * smallFontMultiplier }}
+                    >
+                      Price
+                    </Typography>
                   </Grid>
                 </Grid>
                 {order.orderItems.map((item) => (
-                  <Grid key={item.name} container justifyContent="space-between" alignItems="center" sx={{ backgroundColor: "grey.900", mt: "2px" }}>
+                  <Grid
+                    key={item.name}
+                    container
+                    justifyContent="space-between"
+                    alignItems="center"
+                    sx={{ backgroundColor: "grey.900", mt: "2px" }}
+                  >
                     <Grid item xs={7} sx={{ justifyContent: "center", p: 1 }}>
                       <Typography noWrap sx={{ color: "grey.300", fontSize: 14 * smallFontMultiplier }}>
                         {item.name}{" "}
@@ -199,26 +260,47 @@ const OrderPage = ({ id, search }) => {
                       </Typography>
                     </Grid>
 
-                    <Grid item xs={2} sx={{ color: "grey.300", textAlign: "center", pl: 2, fontSize: 16 * smallFontMultiplier }}>
+                    <Grid
+                      item
+                      xs={2}
+                      sx={{ color: "grey.300", textAlign: "center", pl: 2, fontSize: 16 * smallFontMultiplier }}
+                    >
                       {item.qty}
                     </Grid>
 
-                    <Grid item xs={3} sx={{ color: "grey.300", pr: 1, textAlign: "right", fontSize: 16 * smallFontMultiplier }}>
+                    <Grid
+                      item
+                      xs={3}
+                      sx={{ color: "grey.300", pr: 1, textAlign: "right", fontSize: 16 * smallFontMultiplier }}
+                    >
                       ${item.frame ? (item.price + 10).toFixed(2) : item.price.toFixed(2)}
                     </Grid>
                   </Grid>
                 ))}
 
-                <Grid container justifyContent="space-between" alignItems="center" sx={{ backgroundColor: "grey.900", mt: "2px" }}>
+                <Grid
+                  container
+                  justifyContent="space-between"
+                  alignItems="center"
+                  sx={{ backgroundColor: "grey.900", mt: "2px" }}
+                >
                   <Grid item sm={9} sx={{ justifyContent: "left", p: 1 }}>
                     <Typography sx={{ color: "grey.200", fontSize: 16 * smallFontMultiplier }}>SUBTOTAL</Typography>
                   </Grid>
                   <Grid item sm={3} sx={{ pr: 1, textAlign: "right", fontSize: 16 * smallFontMultiplier }}>
-                    ${order.orderItems.reduce((acc, item) => acc + item.qty * (item.frame ? item.price + 10 : item.price), 0).toFixed(2)}
+                    $
+                    {order.orderItems
+                      .reduce((acc, item) => acc + item.qty * (item.frame ? item.price + 10 : item.price), 0)
+                      .toFixed(2)}
                   </Grid>
                 </Grid>
 
-                <Grid container justifyContent="space-between" alignItems="center" sx={{ backgroundColor: "grey.900", mt: "2px" }}>
+                <Grid
+                  container
+                  justifyContent="space-between"
+                  alignItems="center"
+                  sx={{ backgroundColor: "grey.900", mt: "2px" }}
+                >
                   <Grid item sm={9} sx={{ justifyContent: "left", p: 1 }}>
                     <Typography sx={{ color: "grey.200", fontSize: 16 * smallFontMultiplier }}>TAX</Typography>
                   </Grid>
@@ -227,16 +309,28 @@ const OrderPage = ({ id, search }) => {
                   </Grid>
                 </Grid>
 
-                <Grid container justifyContent="space-between" alignItems="center" sx={{ backgroundColor: "grey.900", mt: "2px" }}>
+                <Grid
+                  container
+                  justifyContent="space-between"
+                  alignItems="center"
+                  sx={{ backgroundColor: "grey.900", mt: "2px" }}
+                >
                   <Grid item sm={9} sx={{ justifyContent: "left", p: 1 }}>
-                    <Typography sx={{ color: "grey.200", fontSize: 16 * smallFontMultiplier }}>{Number(order.shippingPrice) === 0 ? "FREE SHIPPING" : "SHIPPING"}</Typography>
+                    <Typography sx={{ color: "grey.200", fontSize: 16 * smallFontMultiplier }}>
+                      {Number(order.shippingPrice) === 0 ? "FREE SHIPPING" : "SHIPPING"}
+                    </Typography>
                   </Grid>
                   <Grid item sm={3} sx={{ pr: 1, textAlign: "right", fontSize: 16 * smallFontMultiplier }}>
                     ${Number(order.shippingPrice).toFixed(2)}
                   </Grid>
                 </Grid>
 
-                <Grid container justifyContent="space-between" alignItems="center" sx={{ backgroundColor: "grey.900", mt: "2px" }}>
+                <Grid
+                  container
+                  justifyContent="space-between"
+                  alignItems="center"
+                  sx={{ backgroundColor: "grey.900", mt: "2px" }}
+                >
                   <Grid item sm={9} sx={{ justifyContent: "left", p: 1 }}>
                     <Typography sx={{ color: "grey.200", fontSize: 16 * smallFontMultiplier }}>TOTAL</Typography>
                   </Grid>
@@ -250,7 +344,11 @@ const OrderPage = ({ id, search }) => {
                 <Grid container>
                   <Grid item sm={12} sx={{ mt: 2 }}>
                     {loadingPay && <Loader />}
-                    {!sdkReady ? <Loader /> : <PayPalButton amount={order.totalPrice} onSuccess={handlePaymentSuccess} />}
+                    {!sdkReady ? (
+                      <Loader />
+                    ) : (
+                      <PayPalButton amount={order.totalPrice} onSuccess={handlePaymentSuccess} />
+                    )}
                   </Grid>
                 </Grid>
               )}

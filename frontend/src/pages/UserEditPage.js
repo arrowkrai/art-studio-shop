@@ -54,7 +54,7 @@ const UserEditPage = ({ id }) => {
         </Link>
 
         {loadingUpdate && <Loader />}
-        {errorUpdate && <Message variant='danger' text={errorUpdate} />}
+        {errorUpdate && <Message variant="danger" text={errorUpdate} />}
 
         {loading ? (
           <Loader />
@@ -66,9 +66,46 @@ const UserEditPage = ({ id }) => {
               Edit Users
             </Typography>
 
-            <TextField sx={{ my: 1, backgroundColor: "grey.800", input: { color: "grey.100" }, ".MuiInputLabel-animated": { color: "grey.400" }, ".MuiInputLabel-animated.Mui-focused": { color: "primary.light" }, borderRadius: 1 }} required fullWidth id="name" label="Name" name="name" value={name} onChange={(e) => setName(e.target.value)} />
-            <TextField sx={{ my: 1, backgroundColor: "grey.800", input: { color: "grey.100" }, ".MuiInputLabel-animated": { color: "grey.400" }, ".MuiInputLabel-animated.Mui-focused": { color: "primary.light" }, borderRadius: 1 }} required fullWidth id="email" label="Email Address" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <Checkbox sx={{ color: "white" }} id="isAdmin" checked={isAdmin} onChange={(e) => setIsAdmin(e.target.checked)} />
+            <TextField
+              sx={{
+                my: 1,
+                backgroundColor: "grey.800",
+                input: { color: "grey.100" },
+                ".MuiInputLabel-animated": { color: "grey.400" },
+                ".MuiInputLabel-animated.Mui-focused": { color: "primary.light" },
+                borderRadius: 1,
+              }}
+              required
+              fullWidth
+              id="name"
+              label="Name"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <TextField
+              sx={{
+                my: 1,
+                backgroundColor: "grey.800",
+                input: { color: "grey.100" },
+                ".MuiInputLabel-animated": { color: "grey.400" },
+                ".MuiInputLabel-animated.Mui-focused": { color: "primary.light" },
+                borderRadius: 1,
+              }}
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Checkbox
+              sx={{ color: "white" }}
+              id="isAdmin"
+              checked={isAdmin}
+              onChange={(e) => setIsAdmin(e.target.checked)}
+            />
             <Typography variant="span">Is Admin</Typography>
 
             <Button type="submit" fullWidth variant="contained" sx={{ my: 1, textTransform: "none" }}>

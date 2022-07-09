@@ -1,5 +1,18 @@
 import axios from "axios";
-import { ORDER_CREATE_SUCCESS, ORDER_CREATE_REQUEST, ORDER_CREATE_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS, ORDER_PAY_FAIL, ORDER_LIST_PROFILE_REQUEST, ORDER_LIST_PROFILE_SUCCESS, ORDER_LIST_PROFILE_FAIL } from "../constants/orderConstants";
+import {
+  ORDER_CREATE_SUCCESS,
+  ORDER_CREATE_REQUEST,
+  ORDER_CREATE_FAIL,
+  ORDER_DETAILS_REQUEST,
+  ORDER_DETAILS_SUCCESS,
+  ORDER_DETAILS_FAIL,
+  ORDER_PAY_REQUEST,
+  ORDER_PAY_SUCCESS,
+  ORDER_PAY_FAIL,
+  ORDER_LIST_PROFILE_REQUEST,
+  ORDER_LIST_PROFILE_SUCCESS,
+  ORDER_LIST_PROFILE_FAIL,
+} from "../constants/orderConstants";
 
 export const createOrder = (order) => async (dispatch, getState) => {
   try {
@@ -25,7 +38,10 @@ export const createOrder = (order) => async (dispatch, getState) => {
       payload: data,
     });
   } catch (error) {
-    dispatch({ type: ORDER_CREATE_FAIL, payload: error.response && error.response.data.message ? error.response.data.message : error.message });
+    dispatch({
+      type: ORDER_CREATE_FAIL,
+      payload: error.response && error.response.data.message ? error.response.data.message : error.message,
+    });
   }
 };
 
@@ -52,7 +68,10 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
       payload: data,
     });
   } catch (error) {
-    dispatch({ type: ORDER_DETAILS_FAIL, payload: error.response && error.response.data.message ? error.response.data.message : error.message });
+    dispatch({
+      type: ORDER_DETAILS_FAIL,
+      payload: error.response && error.response.data.message ? error.response.data.message : error.message,
+    });
   }
 };
 
@@ -80,7 +99,10 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
       payload: data,
     });
   } catch (error) {
-    dispatch({ type: ORDER_PAY_FAIL, payload: error.response && error.response.data.message ? error.response.data.message : error.message });
+    dispatch({
+      type: ORDER_PAY_FAIL,
+      payload: error.response && error.response.data.message ? error.response.data.message : error.message,
+    });
   }
 };
 
@@ -108,6 +130,9 @@ export const getProfileOrders = () => async (dispatch, getState) => {
       payload: data,
     });
   } catch (error) {
-    dispatch({ type: ORDER_LIST_PROFILE_FAIL, payload: error.response && error.response.data.message ? error.response.data.message : error.message });
+    dispatch({
+      type: ORDER_LIST_PROFILE_FAIL,
+      payload: error.response && error.response.data.message ? error.response.data.message : error.message,
+    });
   }
 };

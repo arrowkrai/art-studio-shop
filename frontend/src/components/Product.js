@@ -37,9 +37,22 @@ const Product = ({ product }) => {
               "&:hover": { backgroundColor: "rgba(0,0,0,0.7)", opacity: 1 },
             }}
           >
-            <Typography sx={{ position: "absolute", bottom: 16, left: 16, fontSize: imageTitleFontSize, width: "50%"}}>{product.name}</Typography>
-            <Typography sx={{ position: "absolute", bottom: 16, right: imageSubtitleRightSpacing, color: "grey.500", fontSize: imageSubtitleFontSize }}>{`${product.numReviews} reviews`}</Typography>
-            <ProductRating value={product.rating} props={{ position: "absolute", bottom: 16, right: 16, fontSize: imageSubtitleFontSize }} />
+            <Typography sx={{ position: "absolute", bottom: 16, left: 16, fontSize: imageTitleFontSize, width: "50%" }}>
+              {product.name}
+            </Typography>
+            <Typography
+              sx={{
+                position: "absolute",
+                bottom: 16,
+                right: imageSubtitleRightSpacing,
+                color: "grey.500",
+                fontSize: imageSubtitleFontSize,
+              }}
+            >{`${product.numReviews} reviews`}</Typography>
+            <ProductRating
+              value={product.rating}
+              props={{ position: "absolute", bottom: 16, right: 16, fontSize: imageSubtitleFontSize }}
+            />
           </Box>
         </Box>
       </Link>

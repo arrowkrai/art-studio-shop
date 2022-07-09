@@ -55,7 +55,16 @@ const ProductPage = ({ id }) => {
   const mediumPagePadding = mediumScreen ? 5 : 2;
 
   return (
-    <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: mediumPagePadding, mt: 0, backgroundColor: "#171717", textAlign: mediumAlign }}>
+    <Box
+      sx={{
+        minHeight: "calc(100vh - 128px)",
+        py: 4,
+        px: mediumPagePadding,
+        mt: 0,
+        backgroundColor: "#171717",
+        textAlign: mediumAlign,
+      }}
+    >
       <Link to="/" style={{ textDecoration: "none" }}>
         <Box sx={{ display: "flex" }}>
           <ArrowBackIcon sx={{ color: "grey.100", mr: 1 }} />
@@ -100,7 +109,12 @@ const ProductPage = ({ id }) => {
 
                 {product.stock > 0 && (
                   <FormControl size="small" variant="outlined" sx={{ width: 80 }}>
-                    <Select sx={{ backgroundColor: "#374151", color: "grey.100" }} id="frame-select" value={frame} onChange={(e) => setFrame(e.target.value)}>
+                    <Select
+                      sx={{ backgroundColor: "#374151", color: "grey.100" }}
+                      id="frame-select"
+                      value={frame}
+                      onChange={(e) => setFrame(e.target.value)}
+                    >
                       <MenuItem value={false}>No</MenuItem>
                       <MenuItem value={true}>Yes</MenuItem>
                     </Select>
@@ -115,7 +129,12 @@ const ProductPage = ({ id }) => {
 
                 {product.stock > 0 && (
                   <FormControl size="small" variant="outlined" sx={{ width: 60 }}>
-                    <Select sx={{ backgroundColor: "#374151", color: "grey.100" }} id="qty-select" value={qty} onChange={(e) => setQty(e.target.value)}>
+                    <Select
+                      sx={{ backgroundColor: "#374151", color: "grey.100" }}
+                      id="qty-select"
+                      value={qty}
+                      onChange={(e) => setQty(e.target.value)}
+                    >
                       {[...Array(product.stock).keys()].map((x) => (
                         <MenuItem key={x + 1} value={x + 1}>
                           {x + 1}
@@ -133,7 +152,12 @@ const ProductPage = ({ id }) => {
                     Add To Cart
                   </Button>
                 ) : (
-                  <Button size="large" variant="contained" disabled sx={{ textTransform: "none", "&.Mui-disabled": { backgroundColor: "grey.800", color: "grey.300" } }}>
+                  <Button
+                    size="large"
+                    variant="contained"
+                    disabled
+                    sx={{ textTransform: "none", "&.Mui-disabled": { backgroundColor: "grey.800", color: "grey.300" } }}
+                  >
                     Out Of Stock
                   </Button>
                 )}
@@ -161,7 +185,11 @@ const ProductPage = ({ id }) => {
               </List>
               <Box sx={{ width: "100%", display: "flex", justifyContent: mediumAlign }}>
                 <Accordion sx={{ backgroundColor: "#374151", color: "grey.100", width: "500px" }}>
-                  <AccordionSummary expandIcon={<ExpandMoreIcon style={{ color: "white" }} />} aria-controls="panel1a-content" id="panel1a-header">
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon style={{ color: "white" }} />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
                     <Typography>Reviews</Typography>
                   </AccordionSummary>
                   <AccordionDetails sx={{ color: "grey.200" }}>

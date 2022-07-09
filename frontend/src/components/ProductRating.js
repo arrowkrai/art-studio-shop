@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa"
+import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
-const ProductRating = ({value, props, text}) => {
+const ProductRating = ({ value, props, text }) => {
   return (
     <Box sx={props}>
       {value >= 1 ? <FaStar /> : value >= 0.5 ? <FaStarHalfAlt /> : <FaRegStar />}
@@ -12,7 +12,7 @@ const ProductRating = ({value, props, text}) => {
       {value >= 4 ? <FaStar /> : value >= 3.5 ? <FaStarHalfAlt /> : <FaRegStar />}
       {value >= 5 ? <FaStar /> : value >= 4.5 ? <FaStarHalfAlt /> : <FaRegStar />}
     </Box>
-  )
-}
+  );
+};
 
-export default ProductRating
+export default ProductRating;
