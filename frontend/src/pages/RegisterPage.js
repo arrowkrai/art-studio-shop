@@ -18,6 +18,7 @@ const RegisterPage = ({ search }) => {
 
   const userRegister = useSelector((state) => state.userRegister);
   const { loading, error, userInfo } = userRegister;
+  console.log(userRegister);
 
   const redirect = search ? search.split("=")[1] : "/";
 
@@ -39,26 +40,8 @@ const RegisterPage = ({ search }) => {
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
       <Container maxWidth="sm">
-        {message && (
-          <Message
-            variant="error"
-            children={
-              <Typography variant="p" sx={{ fontWeight: 500 }}>
-                {message}
-              </Typography>
-            }
-          />
-        )}
-        {error && (
-          <Message
-            variant="error"
-            children={
-              <Typography variant="p" sx={{ fontWeight: 500 }}>
-                {error}
-              </Typography>
-            }
-          />
-        )}
+        {message && <Message variant="error" text={message} />}
+        {error && <Message variant="error" text={error} />}
         {loading && <Loader />}
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField sx={{ backgroundColor: "grey.500" }} required fullWidth id="name" label="Name" name="name" autoFocus value={name} onChange={(e) => setName(e.target.value)} />

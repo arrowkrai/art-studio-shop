@@ -1,8 +1,15 @@
 import React from "react";
 import Alert from "@mui/material/Alert";
+import Typography from "@mui/material/Typography";
 
-const Message = ({ variant, children }) => {
-  return <Alert severity={variant}>{children}</Alert>;
+const Message = ({ variant, text }) => {
+  return (
+    <Alert severity={variant}>
+      <Typography variant="p" sx={{ fontWeight: 500 }}>
+        {text}
+      </Typography>
+    </Alert>
+  );
 };
 
 Message.defaultProps = {

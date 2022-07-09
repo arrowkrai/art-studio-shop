@@ -32,16 +32,7 @@ const LoginPage = ({ search }) => {
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
       <Container maxWidth="sm">
-        {error && (
-          <Message
-            variant="error"
-            children={
-              <Typography variant="p" sx={{ fontWeight: 500 }}>
-                {error}
-              </Typography>
-            }
-          />
-        )}
+        {error && <Message variant="error" text={error} />}
         {loading && <Loader />}
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField sx={{ backgroundColor: "grey.500" }} required fullWidth id="email" label="Email Address" name="email" autoFocus value={email} onChange={(e) => setEmail(e.target.value)} />

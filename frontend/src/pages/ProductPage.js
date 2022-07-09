@@ -66,14 +66,7 @@ const ProductPage = ({ id }) => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message
-          variant="error"
-          children={
-            <Typography variant="p" sx={{ fontWeight: 500 }}>
-              {error}
-            </Typography>
-          }
-        />
+        <Message variant="error" text={error} />
       ) : (
         <Grid container spacing={2} sx={{ py: 6 }}>
           <Grid item xs={12} md={7}>

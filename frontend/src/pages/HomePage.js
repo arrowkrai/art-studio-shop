@@ -29,14 +29,7 @@ const HomePage = () => {
         {loading ? (
           <Loader />
         ) : error ? (
-          <Message
-            variant="error"
-            children={
-              <Typography variant="p" sx={{ fontWeight: 500 }}>
-                {error}
-              </Typography>
-            }
-          />
+          <Message variant="error" text={error} />
         ) : (
           <Grid container spacing={2}>
             {products.map((product, index) => (

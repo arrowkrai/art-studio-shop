@@ -70,14 +70,7 @@ const OrderPage = ({ id, search }) => {
         {loading ? (
           <Loader />
         ) : error ? (
-          <Message
-            variant="error"
-            children={
-              <Typography variant="p" sx={{ fontWeight: 500 }}>
-                {error}
-              </Typography>
-            }
-          />
+          <Message variant="error" text={error} />
         ) : (
           <Grid container>
             <Grid item xs={12}>
@@ -90,34 +83,7 @@ const OrderPage = ({ id, search }) => {
             </Grid>
             <Grid item xs={12}>
               <Grid item xs={8} sx={{ pr: 1, mb: 2 }}>
-                {order.isDelivered ? (
-                  <Message
-                    variant="success"
-                    children={
-                      <Typography variant="p" sx={{ fontWeight: 500 }}>
-                        Delivered!
-                      </Typography>
-                    }
-                  />
-                ) : order.isPaid ? (
-                  <Message
-                    variant="success"
-                    children={
-                      <Typography variant="p" sx={{ fontWeight: 500 }}>
-                        Order Confirmed!
-                      </Typography>
-                    }
-                  />
-                ) : (
-                  <Message
-                    variant="error"
-                    children={
-                      <Typography variant="p" sx={{ fontWeight: 500 }}>
-                        Order Not Paid!
-                      </Typography>
-                    }
-                  />
-                )}
+                {order.isDelivered ? <Message variant="success" text="Delivered!" /> : order.isPaid ? <Message variant="success" text="Order Confirmed!" /> : <Message variant="error" text="Order Not Paid!" />}
               </Grid>
             </Grid>
             <Grid item md={8} sx={{ pr: mediumPadding }}>
@@ -278,27 +244,18 @@ const OrderPage = ({ id, search }) => {
                     ${Number(order.totalPrice).toFixed(2)}
                   </Grid>
                 </Grid>
-                </Box>
+              </Box>
 
-                {!order.isPaid && (
-                  <Grid container>
-                    <Grid item sm={12} sx={{mt:2}}>
-                      {loadingPay && <Loader />}
-                      {!sdkReady ? <Loader /> : <PayPalButton amount={order.totalPrice} onSuccess={handlePaymentSuccess} />}
-                    </Grid>
+              {!order.isPaid && (
+                <Grid container>
+                  <Grid item sm={12} sx={{ mt: 2 }}>
+                    {loadingPay && <Loader />}
+                    {!sdkReady ? <Loader /> : <PayPalButton amount={order.totalPrice} onSuccess={handlePaymentSuccess} />}
                   </Grid>
-                )}
-
-              {error && (
-                <Message
-                  variant="error"
-                  children={
-                    <Typography variant="p" sx={{ fontWeight: 500 }}>
-                      {error}
-                    </Typography>
-                  }
-                />
+                </Grid>
               )}
+
+              {error && <Message variant="error" text={error} />}
 
               {/* {order.orderItems.length > 0 ? (
                 <Button color="success" fullWidth size="large" variant="contained" sx={{ textTransform: "none", mt: 1 }} onClick={handlePlaceOrder}>

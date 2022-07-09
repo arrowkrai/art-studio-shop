@@ -65,36 +65,9 @@ const ProfilePage = ({ search }) => {
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
       <Container maxWidth="xl">
-        {message && (
-          <Message
-            variant="error"
-            children={
-              <Typography variant="p" sx={{ fontWeight: 500 }}>
-                {message}
-              </Typography>
-            }
-          />
-        )}
-        {error && (
-          <Message
-            variant="error"
-            children={
-              <Typography variant="p" sx={{ fontWeight: 500 }}>
-                {error}
-              </Typography>
-            }
-          />
-        )}
-        {success && (
-          <Message
-            variant="success"
-            children={
-              <Typography variant="p" sx={{ fontWeight: 500 }}>
-                Profile Updated
-              </Typography>
-            }
-          />
-        )}
+        {message && <Message variant="error" text={message} />}
+        {error && <Message variant="error" text={error} />}
+        {success && <Message variant="success" text="Profile Updated!" />}
         {loading && <Loader />}
 
         <Grid container>
@@ -106,7 +79,17 @@ const ProfilePage = ({ search }) => {
               <TextField sx={{ my: 1, backgroundColor: "grey.800", input: { color: "grey.100" }, ".MuiInputLabel-animated": { color: "grey.400" }, ".MuiInputLabel-animated.Mui-focused": { color: "primary.light" }, borderRadius: 1 }} required fullWidth id="name" label="Name" name="name" value={name} onChange={(e) => setName(e.target.value)} />
               <TextField sx={{ my: 1, backgroundColor: "grey.800", input: { color: "grey.100" }, ".MuiInputLabel-animated": { color: "grey.400" }, ".MuiInputLabel-animated.Mui-focused": { color: "primary.light" }, borderRadius: 1 }} required fullWidth id="email" label="Email Address" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
               <TextField sx={{ my: 1, backgroundColor: "grey.800", input: { color: "grey.100" }, ".MuiInputLabel-animated": { color: "grey.400" }, ".MuiInputLabel-animated.Mui-focused": { color: "primary.light" }, borderRadius: 1 }} required fullWidth name="password" label="Password" type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-              <TextField sx={{ my: 1, backgroundColor: "grey.800", input: { color: "grey.100" }, ".MuiInputLabel-animated": { color: "grey.400" }, ".MuiInputLabel-animated.Mui-focused": { color: "primary.light" }, borderRadius: 1 }} required fullWidth name="confirmPassword" label="Confirm Password" type="password" id="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+              <TextField
+                sx={{ my: 1, backgroundColor: "grey.800", input: { color: "grey.100" }, ".MuiInputLabel-animated": { color: "grey.400" }, ".MuiInputLabel-animated.Mui-focused": { color: "primary.light" }, borderRadius: 1 }}
+                required
+                fullWidth
+                name="confirmPassword"
+                label="Confirm Password"
+                type="password"
+                id="confirmPassword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
               <Button type="submit" fullWidth variant="contained" sx={{ mt: 1, mb: 2 }}>
                 Update Profile
               </Button>
@@ -114,20 +97,13 @@ const ProfilePage = ({ search }) => {
           </Grid>
 
           <Grid item md={6} sx={{ pl: mediumPadding, width: "100%" }}>
-            <Typography variant="h3" sx={{ mt:1, pl: mediumPadding, fontSize: 48 * smallFontMultiplier }}>
+            <Typography variant="h3" sx={{ mt: 1, pl: mediumPadding, fontSize: 48 * smallFontMultiplier }}>
               My Orders
             </Typography>
             {loadingOrders ? (
               <Loader />
             ) : errorOrders ? (
-              <Message
-                variant="error"
-                children={
-                  <Typography variant="p" sx={{ fontWeight: 500 }}>
-                    {errorOrders}
-                  </Typography>
-                }
-              />
+              <Message variant="error" text={errorOrders} />
             ) : (
               <Grid item xs={12} sx={{ pl: mediumPadding, width: "100%", pt: mediumPaddingTop, mt: 1 }}>
                 <List disablePadding>

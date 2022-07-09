@@ -190,21 +190,21 @@ const Header = () => {
             {userInfo && userInfo.isAdmin && (
               <Box>
                 <Tooltip title="User List">
-                  <Link to="/userlist" style={{ textDecoration: "none" }}>
+                  <Link to="/admin/userlist" style={{ textDecoration: "none" }}>
                     <IconButton size="large" color="error" sx={{ color: "error" }}>
                       <SupervisorAccountIcon />
                     </IconButton>
                   </Link>
                 </Tooltip>
                 <Tooltip title="Product List">
-                  <Link to="/userlist" style={{ textDecoration: "none" }}>
+                  <Link to="/admin/userlist" style={{ textDecoration: "none" }}>
                     <IconButton size="large" color="error" sx={{ color: "error" }}>
                       <InventoryIcon />
                     </IconButton>
                   </Link>
                 </Tooltip>
                 <Tooltip title="Order List">
-                  <Link to="/userlist" style={{ textDecoration: "none" }}>
+                  <Link to="/admin/userlist" style={{ textDecoration: "none" }}>
                     <IconButton size="large" color="error" sx={{ color: "error" }}>
                       <AdminPanelSettingsIcon />
                     </IconButton>

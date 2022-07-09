@@ -251,16 +251,7 @@ const PlaceOrderPage = () => {
                 </Grid>
               </Box>
 
-              {error && (
-                <Message
-                  variant="error"
-                  children={
-                    <Typography variant="p" sx={{ fontWeight: 500 }}>
-                      {error}
-                    </Typography>
-                  }
-                />
-              )}
+              {error && <Message variant="error" text={error} />}
 
               {cart.cartItems.length > 0 ? (
                 <Button color="success" fullWidth size="large" variant="contained" sx={{ textTransform: "none", mt: 1 }} onClick={handlePlaceOrder}>
