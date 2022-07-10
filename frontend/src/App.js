@@ -63,8 +63,8 @@ const UserEditPageWrapper = () => {
 };
 
 const ProductListPageWrapper = () => {
-  const { id } = useParams();
-  return <ProductListPage id={id} />;
+  const { id, pageNumber } = useParams();
+  return <ProductListPage id={id} pageNumber={pageNumber} />;
 };
 
 const ProductEditPageWrapper = () => {
@@ -72,9 +72,9 @@ const ProductEditPageWrapper = () => {
   return <ProductEditPage id={id} />;
 };
 
-const HomePageWrapper = () => {
-  const { keyword } = useParams();
-  return <HomePage keyword={keyword} />;
+const HomePageSearchWrapper = () => {
+  const { keyword, pageNumber } = useParams();
+  return <HomePage keyword={keyword} pageNumber={pageNumber} />;
 };
 
 const App = () => {
@@ -85,7 +85,9 @@ const App = () => {
 
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/search/:keyword" element={<HomePageWrapper />} />
+          <Route path="/search/:keyword" element={<HomePageSearchWrapper />} />
+          <Route path="/page/:pageNumber" element={<HomePageSearchWrapper />} />
+          <Route path="/search/:keyword/page/:pageNumber" element={<HomePageSearchWrapper />} />
           <Route path="/product/:id" element={<ProductPageWrapper />} />
           <Route path="/cart/:id" element={<CartPageWrapper />} />
           <Route path="/cart" element={<CartPageWrapper />} />
@@ -99,6 +101,7 @@ const App = () => {
           <Route path="/admin/userlist" element={<UserListPage />} />
           <Route path="/admin/user/:id/edit" element={<UserEditPageWrapper />} />
           <Route path="/admin/productlist" element={<ProductListPageWrapper />} />
+          <Route path="/admin/productlist/:pageNumber" element={<ProductListPageWrapper />} />
           <Route path="/admin/product/:id/edit" element={<ProductEditPageWrapper />} />
           <Route path="/admin/orderlist" element={<OrderListPage />} />
         </Routes>

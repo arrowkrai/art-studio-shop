@@ -20,6 +20,7 @@ import {
 import { grey } from "@mui/material/colors";
 import { Link, useNavigate } from "react-router-dom";
 import { PRODUCT_CREATE_RESET } from "../constants/productConstants";
+import Paginate from "../components/Paginate";
 
 const theme = createTheme({
   components: {
@@ -34,12 +35,13 @@ const theme = createTheme({
   },
 });
 
-const ProductListPage = ({ id }) => {
+const ProductListPage = ({ id, pageNumber }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  if (!pageNumber) pageNumber = 1;
 
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const { loading, error, products, page, pages } = productList;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -58,9 +60,10 @@ const ProductListPage = ({ id }) => {
     if (successCreate) {
       navigate(`/admin/product/${createdProduct._id}/edit`);
     } else {
-      dispatch(listProducts());
+      console.log(pageNumber);
+      dispatch(listProducts("", pageNumber));
     }
-  }, [dispatch, navigate, userInfo, successDelete, successCreate, createdProduct]);
+  }, [dispatch, navigate, userInfo, successDelete, successCreate, createdProduct, pageNumber]);
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure?")) {
@@ -121,6 +124,7 @@ const ProductListPage = ({ id }) => {
               </Table>
             </TableContainer>
           )}
+          <Paginate pages={pages} page={page} isAdmin={true} />
         </Container>
       </ThemeProvider>
     </Box>
