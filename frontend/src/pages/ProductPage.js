@@ -36,6 +36,7 @@ import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstants";
 import { styled } from "@mui/material/styles";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { grey } from "@mui/material/colors";
+import Title from "../components/Title";
 
 const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
@@ -66,16 +67,21 @@ const ProductPage = ({ id }) => {
   const { userInfo } = userLogin;
 
   const productReviewCreate = useSelector((state) => state.productReviewCreate);
-  const { success: successProductReview, error: errorProductReview } = productReviewCreate;
+  const {
+    success: successProductReview,
+    loading: loadingProductReview,
+    error: errorProductReview,
+  } = productReviewCreate;
 
   useEffect(() => {
     if (successProductReview) {
-      alert("Review Submitted!");
       setRating(0);
       setComment("");
+    }
+    if (!product._id || product._id !== id) {
+      dispatch(listProductDetails(id));
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
     }
-    dispatch(listProductDetails(id));
   }, [dispatch, id, successProductReview]);
 
   const addToCartHandler = () => {
@@ -122,6 +128,7 @@ const ProductPage = ({ id }) => {
         <Message variant="error" text={error} />
       ) : (
         <Grid container spacing={2} sx={{ py: 6 }}>
+          <Title title={product.name} />
           <Grid item xs={12} md={7}>
             {frame ? (
               <li className="Frame">
@@ -276,6 +283,8 @@ const ProductPage = ({ id }) => {
 
                     <List disablePadding>
                       <ListItem disableGutters disablePadding sx={{ display: "block" }}>
+                        {successProductReview && <Message variant="success" text="Review submitted successfully!" />}
+                        {loadingProductReview && <Loader />}
                         {errorProductReview && <Message variant="error" text={errorProductReview} />}
                         {errorRating && <Message variant="error" text={errorRating} />}
 
@@ -318,7 +327,13 @@ const ProductPage = ({ id }) => {
                               onChange={(e) => setComment(e.target.value)}
                             />
 
-                            <Button type="submit" fullWidth variant="contained" sx={{ my: 1, textTransform: "none" }}>
+                            <Button
+                              disabled={loadingProductReview}
+                              type="submit"
+                              fullWidth
+                              variant="contained"
+                              sx={{ my: 1, textTransform: "none" }}
+                            >
                               Submit
                             </Button>
                           </Box>
@@ -333,13 +348,6 @@ const ProductPage = ({ id }) => {
                   </AccordionDetails>
                 </Accordion>
               </Box>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sx={{ mt: 20 }}>
-            <Box sx={{ display: "flex", flexDirection: "column", color: "white" }}>
-              <Typography variant="h5" align="center">
-                You may also like
-              </Typography>
             </Box>
           </Grid>
         </Grid>

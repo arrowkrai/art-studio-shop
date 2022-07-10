@@ -106,9 +106,9 @@ const Header = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (keyword.trim()) {
-      navigate(`/search/${keyword}`)
+      navigate(`/search/${keyword}`);
     } else {
-      navigate('/')
+      navigate("/");
     }
   };
 

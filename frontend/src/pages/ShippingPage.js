@@ -6,6 +6,7 @@ import Loader from "../components/Loader";
 import { Box, Button, Container, FormControl, TextField, Typography } from "@mui/material";
 import { saveShippingAddress } from "../actions/cartActions";
 import CheckoutSteps from "../components/CheckoutSteps";
+import Title from "../components/Title";
 
 const ShippingPage = () => {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ const ShippingPage = () => {
 
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
+      <Title title="Shipping" />
       <Container maxWidth="md">
         <CheckoutSteps step={0} />
       </Container>

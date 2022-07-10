@@ -7,6 +7,7 @@ import { getUserDetails, updateUser } from "../actions/userActions";
 import { Box, Button, Checkbox, Container, TextField, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { USER_UPDATE_RESET } from "../constants/userConstants";
+import Title from "../components/Title";
 
 const UserEditPage = ({ id }) => {
   const userId = id;
@@ -45,6 +46,7 @@ const UserEditPage = ({ id }) => {
 
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
+      <Title title="User Edit" />
       <Container maxWidth="sm">
         <Link to="/admin/userlist" style={{ textDecoration: "none" }}>
           <Box sx={{ display: "flex" }}>

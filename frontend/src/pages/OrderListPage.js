@@ -20,6 +20,7 @@ import {
   Typography,
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
+import Title from "../components/Title";
 
 const theme = createTheme({
   components: {
@@ -54,6 +55,7 @@ const OrderListPage = ({}) => {
 
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
+      <Title title="Order List" />
       <ThemeProvider theme={theme}>
         <Container maxWidth="xl">
           <Typography variant="h4" sx={{ mb: 3 }}>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { Typography, Box, Grid, Card, CardContent, Container } from "@mui/material";
 
 import Product from "../components/Product";
@@ -10,6 +9,9 @@ import Loader from "../components/Loader";
 import { listProducts } from "../actions/productActions";
 import Paginate from "../components/Paginate";
 import Banner from "../components/Banner";
+import Title from "../components/Title";
+import { Link } from "react-router-dom";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const HomePage = ({ keyword, pageNumber }) => {
   if (!pageNumber) pageNumber = 1;
@@ -24,6 +26,7 @@ const HomePage = ({ keyword, pageNumber }) => {
 
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", backgroundColor: "#171717", pt: 2 }}>
+      <Title />
       <Container maxWidth="">
         {loading ? (
           <Loader />
@@ -31,7 +34,15 @@ const HomePage = ({ keyword, pageNumber }) => {
           <Message variant="error" text={error} />
         ) : (
           <>
-            {pageNumber <= 1 && <Banner />}
+            {pageNumber <= 1 && !keyword && <Banner />}
+            {keyword && (
+              <Link to="/" style={{ textDecoration: "none" }}>
+                <Box sx={{ display: "flex", mb: 3 }}>
+                  <ArrowBackIcon sx={{ color: "grey.100", mr: 1 }} />
+                  <Typography sx={{ color: "grey.100" }}>Go Back</Typography>
+                </Box>
+              </Link>
+            )}
             <Grid container spacing={2}>
               {products.map((product, index) => (
                 <Product key={index} product={product} />

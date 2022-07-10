@@ -6,13 +6,14 @@ import Loader from "../components/Loader";
 import { Box, Button, Container, FormControl, FormControlLabel, Radio, RadioGroup, Typography } from "@mui/material";
 import { saveShippingAddress, savePaymentMethod } from "../actions/cartActions";
 import CheckoutSteps from "../components/CheckoutSteps";
+import Title from "../components/Title";
 
 const PaymentPage = () => {
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
 
-  if (!shippingAddress) {
+  if (!shippingAddress.address) {
     navigate("/shipping");
   }
 
@@ -28,12 +29,15 @@ const PaymentPage = () => {
 
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
+      <Title title="Payment Method" />
       <Container maxWidth="md">
         <CheckoutSteps step={1} />
       </Container>
       <Container maxWidth="sm">
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 4 }}>
-          <Typography variant="h3">Payment Method</Typography>
+          <Typography variant="h4" sx={{ my: 2 }}>
+            Payment Method
+          </Typography>
 
           <FormControl>
             <RadioGroup defaultValue="PayPal" name="payment-method" onChange={(e) => setPaymentMethod(e.target.value)}>

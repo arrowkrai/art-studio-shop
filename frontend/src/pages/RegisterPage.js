@@ -6,6 +6,7 @@ import Loader from "../components/Loader";
 import { register } from "../actions/userActions";
 import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
 import { blue } from "@mui/material/colors";
+import Title from "../components/Title";
 
 const RegisterPage = ({ search }) => {
   const [name, setName] = useState("");
@@ -40,6 +41,7 @@ const RegisterPage = ({ search }) => {
 
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
+      <Title title="Register" />
       <Container maxWidth="sm">
         {message && <Message variant="error" text={message} />}
         {error && <Message variant="error" text={error} />}

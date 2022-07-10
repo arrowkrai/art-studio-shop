@@ -21,6 +21,7 @@ import { grey } from "@mui/material/colors";
 import { Link, useNavigate } from "react-router-dom";
 import { PRODUCT_CREATE_RESET } from "../constants/productConstants";
 import Paginate from "../components/Paginate";
+import Title from "../components/Title";
 
 const theme = createTheme({
   components: {
@@ -54,7 +55,7 @@ const ProductListPage = ({ id, pageNumber }) => {
 
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
-    if (!userInfo.isAdmin) {
+    if (!userInfo || !userInfo.isAdmin) {
       navigate("/login");
     }
     if (successCreate) {
@@ -77,6 +78,7 @@ const ProductListPage = ({ id, pageNumber }) => {
 
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
+      <Title title="Product List" />
       <ThemeProvider theme={theme}>
         <Container maxWidth="xl">
           <Typography variant="h4" sx={{ mb: 3 }}>

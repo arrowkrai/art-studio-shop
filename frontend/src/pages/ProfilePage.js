@@ -8,6 +8,8 @@ import { Box, Button, Container, Grid, List, ListItem, TextField, Typography } f
 import { getProfileOrders } from "../actions/orderActions";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Title from "../components/Title";
+import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
 
 const ProfilePage = ({ search }) => {
   const [name, setName] = useState("");
@@ -35,7 +37,8 @@ const ProfilePage = ({ search }) => {
     if (!userInfo) {
       navigate("/login");
     } else {
-      if (!user.name) {
+      if (!user || !user.name || success) {
+        dispatch({ type: USER_UPDATE_PROFILE_RESET })
         dispatch(getUserDetails("profile"));
         dispatch(getProfileOrders());
       } else {
@@ -43,7 +46,7 @@ const ProfilePage = ({ search }) => {
         setEmail(user.email);
       }
     }
-  }, [navigate, userInfo, dispatch, user]);
+  }, [navigate, userInfo, dispatch, user, success]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -64,6 +67,7 @@ const ProfilePage = ({ search }) => {
 
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
+      <Title title="Profile" />
       <Container maxWidth="xl">
         {message && <Message variant="error" text={message} />}
         {error && <Message variant="error" text={error} />}

@@ -19,6 +19,7 @@ import { FaTrash } from "react-icons/fa";
 
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Title from "../components/Title";
 
 const CartPage = ({ id, search }) => {
   const navigate = useNavigate();
@@ -58,12 +59,7 @@ const CartPage = ({ id, search }) => {
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
       <Container maxWidth="xl">
-        {/* <Link to="/" style={{ textDecoration: "none" }}>
-          <Box sx={{ display: "flex" }}>
-            <ArrowBackIcon sx={{ color: "grey.100", mr: 1 }} />
-            <Typography sx={{ color: "grey.100" }}>Go Back</Typography>
-          </Box>
-        </Link> */}
+        <Title title="Shopping Cart" />
         <Typography variant="h4" sx={{ my: 3, fontSize: 34 * smallFontMultiplier }}>
           Shopping Cart
         </Typography>

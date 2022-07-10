@@ -10,9 +10,15 @@ import { createOrder } from "../actions/orderActions";
 import { getUserDetails } from "../actions/userActions";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Title from "../components/Title";
+import { ORDER_CREATE_RESET } from "../constants/orderConstants";
+import { USER_DETAILS_RESET } from "../constants/userConstants";
 
 const PlaceOrderPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
+
   cart.itemsPrice = cart.cartItems
     .reduce((acc, item) => acc + item.qty * (item.frame ? item.price + 10 : item.price), 0)
     .toFixed(2);
@@ -20,8 +26,11 @@ const PlaceOrderPage = () => {
   cart.taxPrice = (0.12 * cart.itemsPrice).toFixed(2);
   cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2);
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  if (!cart.shippingAddress.address) {
+    navigate("/shipping");
+  } else if (!cart.paymentMethod) {
+    navigate("/payment");
+  }
 
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error: userError, user } = userDetails;
@@ -46,6 +55,8 @@ const PlaceOrderPage = () => {
   useEffect(() => {
     if (success) {
       navigate(`/order/${order._id}`);
+      dispatch({ type: USER_DETAILS_RESET });
+      dispatch({ type: ORDER_CREATE_RESET });
     }
     // eslint-disable-next-line
   }, [success, navigate]);
@@ -74,6 +85,7 @@ const PlaceOrderPage = () => {
 
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
+      <Title title="Place Order" />
       <Container maxWidth="md">
         <CheckoutSteps step={2} />
       </Container>

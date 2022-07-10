@@ -11,6 +11,7 @@ import { getOrderDetails, payOrder, deliverOrder } from "../actions/orderActions
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from "../constants/orderConstants";
+import Title from "../components/Title";
 
 const OrderPage = ({ id, search }) => {
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ const OrderPage = ({ id, search }) => {
 
     // addPayPalScript();
 
-    if (!order || success || successDeliver) {
+    if (!order || success || successDeliver || order._id !== id) {
       dispatch({ type: ORDER_PAY_RESET });
       dispatch({ type: ORDER_DELIVER_RESET });
       dispatch(getOrderDetails(id));
@@ -81,6 +82,7 @@ const OrderPage = ({ id, search }) => {
 
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
+      <Title title="Order Details" />
       <Container maxWidth="xl">
         {loading ? (
           <Loader />

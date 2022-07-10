@@ -7,6 +7,7 @@ import { listProductDetails, updateProduct } from "../actions/productActions";
 import { PRODUCT_UPDATE_RESET } from "../constants/productConstants";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Title from "../components/Title";
 
 const ProductEditPage = ({ id }) => {
   const productId = id;
@@ -48,6 +49,7 @@ const ProductEditPage = ({ id }) => {
 
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
+      <Title title="Product Edit" />
       <Container maxWidth="sm">
         <Link to="/admin/productlist" style={{ textDecoration: "none" }}>
           <Box sx={{ display: "flex" }}>
