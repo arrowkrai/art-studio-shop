@@ -362,16 +362,6 @@ const OrderPage = ({ id, search }) => {
               )}
 
               {error && <Message variant="error" text={error} />}
-
-              {/* {order.orderItems.length > 0 ? (
-                <Button color="success" fullWidth size="large" variant="contained" sx={{ textTransform: "none", mt: 1 }} onClick={handlePlaceOrder}>
-                  Place Order
-                </Button>
-              ) : (
-                <Button fullWidth size="large" variant="contained" disabled sx={{ mt: 1, textTransform: "none", "&.Mui-disabled": { backgroundColor: "grey.800", color: "grey.300" } }}>
-                  Cart is empty
-                </Button>
-              )} */}
             </Grid>
           </Grid>
         )}

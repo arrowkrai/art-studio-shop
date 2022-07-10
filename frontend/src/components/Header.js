@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -24,10 +24,10 @@ import westStudioLogo from "../assets/logo.svg";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/userActions";
-import { Snackbar, Tooltip } from "@mui/material";
+import { Button, Snackbar, Tooltip } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
@@ -77,9 +77,10 @@ const Header = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const [openSnackbar, setOpenSnackbar] = React.useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [keyword, setKeyword] = useState("");
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -95,10 +96,20 @@ const Header = () => {
   const { cartItems } = cart;
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logout());
     setOpenSnackbar(true);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (keyword.trim()) {
+      navigate(`/search/${keyword}`)
+    } else {
+      navigate('/')
+    }
   };
 
   const Alert = React.forwardRef(function Alert(props, ref) {
@@ -183,19 +194,24 @@ const Header = () => {
           {/* <Typography variant="h6" noWrap sx={{ display: { xs: "none", sm: "block" }, mx: '1rem' }}>
             West Studio
           </Typography> */}
-          <Search
-            sx={{
-              backgroundColor: "grey.800",
-              borderRadius: "24px",
-              ml: 2,
-              "&:hover": { backgroundColor: "grey.800" },
-            }}
-          >
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase placeholder="Search…" />
-          </Search>
+
+          <Box component="form" onSubmit={handleSubmit}>
+            <Search
+              sx={{
+                backgroundColor: "grey.800",
+                borderRadius: "24px",
+                ml: 2,
+                "&:hover": { backgroundColor: "grey.800" },
+              }}
+              onChange={(e) => setKeyword(e.target.value)}
+            >
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase placeholder="Search…" />
+            </Search>
+          </Box>
+
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             {userInfo && userInfo.isAdmin && (

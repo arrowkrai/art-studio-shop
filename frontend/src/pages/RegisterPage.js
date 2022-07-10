@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { register } from "../actions/userActions";
-import { Box, Button, Container, Grid, TextField } from "@mui/material";
+import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
+import { blue } from "@mui/material/colors";
 
 const RegisterPage = ({ search }) => {
   const [name, setName] = useState("");
@@ -44,8 +45,19 @@ const RegisterPage = ({ search }) => {
         {error && <Message variant="error" text={error} />}
         {loading && <Loader />}
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Typography variant="h4" sx={{ my: 2, textAlign: "center" }}>
+            Register
+          </Typography>
+
           <TextField
-            sx={{ backgroundColor: "grey.500" }}
+            sx={{
+              my: 1,
+              backgroundColor: "grey.800",
+              input: { color: "grey.100" },
+              ".MuiInputLabel-animated": { color: "grey.400" },
+              ".MuiInputLabel-animated.Mui-focused": { color: "primary.light" },
+              borderRadius: 1,
+            }}
             required
             fullWidth
             id="name"
@@ -55,8 +67,16 @@ const RegisterPage = ({ search }) => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+
           <TextField
-            sx={{ backgroundColor: "grey.500" }}
+            sx={{
+              my: 1,
+              backgroundColor: "grey.800",
+              input: { color: "grey.100" },
+              ".MuiInputLabel-animated": { color: "grey.400" },
+              ".MuiInputLabel-animated.Mui-focused": { color: "primary.light" },
+              borderRadius: 1,
+            }}
             required
             fullWidth
             id="email"
@@ -65,8 +85,16 @@ const RegisterPage = ({ search }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+
           <TextField
-            sx={{ backgroundColor: "grey.500" }}
+            sx={{
+              my: 1,
+              backgroundColor: "grey.800",
+              input: { color: "grey.100" },
+              ".MuiInputLabel-animated": { color: "grey.400" },
+              ".MuiInputLabel-animated.Mui-focused": { color: "primary.light" },
+              borderRadius: 1,
+            }}
             required
             fullWidth
             name="password"
@@ -77,7 +105,14 @@ const RegisterPage = ({ search }) => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <TextField
-            sx={{ backgroundColor: "grey.500" }}
+            sx={{
+              my: 1,
+              backgroundColor: "grey.800",
+              input: { color: "grey.100" },
+              ".MuiInputLabel-animated": { color: "grey.400" },
+              ".MuiInputLabel-animated.Mui-focused": { color: "primary.light" },
+              borderRadius: 1,
+            }}
             required
             fullWidth
             name="confirmPassword"
@@ -87,16 +122,16 @@ const RegisterPage = ({ search }) => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+
+          <Button type="submit" fullWidth variant="contained" sx={{ my: 1, textTransform: "none" }}>
             Register
           </Button>
-          <Grid container>
-            <Grid item>
-              <Link to={redirect ? `/register?redirect=${redirect}` : "/register"} variant="body2">
-                {"Already have an account? Login"}
-              </Link>
-            </Grid>
-          </Grid>
+
+          <Link to="/login" style={{ textDecoration: "none" }}>
+            <Typography sx={{ color: blue[400], "&:hover": { textDecoration: "underline" } }}>
+              Already have an account? Login
+            </Typography>
+          </Link>
         </Box>
       </Container>
     </Box>

@@ -12,6 +12,9 @@ import {
   FormControl,
   MenuItem,
   Select,
+  Rating,
+  TextField,
+  Divider,
 } from "@mui/material";
 import ProductRating from "../components/ProductRating";
 import { FaLeaf, FaPaintBrush, FaImage } from "react-icons/fa";
@@ -20,7 +23,7 @@ import { IoIosContrast } from "react-icons/io";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./ProductPage.css";
 import { useDispatch, useSelector } from "react-redux";
-import { listProductDetails } from "../actions/productActions";
+import { listProductDetails, createProductReview } from "../actions/productActions";
 import { Link, useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Loader from "../components/Loader";
@@ -29,23 +32,64 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import "./ProductPage.css";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstants";
+import { styled } from "@mui/material/styles";
+import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import { grey } from "@mui/material/colors";
+
+const StyledRating = styled(Rating)({
+  "& .MuiRating-iconFilled": {
+    color: grey[100],
+  },
+  "& .MuiRating-iconHover": {
+    color: grey[100],
+  },
+  "& .MuiRating-iconEmpty": {
+    color: grey[500],
+  },
+});
 
 const ProductPage = ({ id }) => {
   const navigate = useNavigate();
   const [qty, setQty] = useState(1);
   const [frame, setFrame] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+  const [errorRating, setErrorRating] = useState("");
 
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, product, error } = productDetails;
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const productReviewCreate = useSelector((state) => state.productReviewCreate);
+  const { success: successProductReview, error: errorProductReview } = productReviewCreate;
+
   useEffect(() => {
+    if (successProductReview) {
+      alert("Review Submitted!");
+      setRating(0);
+      setComment("");
+      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
+    }
     dispatch(listProductDetails(id));
-  }, [dispatch, id]);
+  }, [dispatch, id, successProductReview]);
 
   const addToCartHandler = () => {
     navigate(`/cart/${id}?qty=${qty}&frame=${frame}`);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (rating === 0) {
+      setErrorRating("You must give a rating");
+    } else {
+      setErrorRating("");
+      dispatch(createProductReview(id, { rating, comment }));
+    }
   };
 
   const theme = useTheme();
@@ -196,10 +240,96 @@ const ProductPage = ({ id }) => {
                     <Typography variant="h6" sx={{ mb: 2 }}>
                       Customer Reviews
                     </Typography>
-                    <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                      <Typography>No written reviews yet</Typography>
-                      <Typography>Leave a review</Typography>
-                    </Box>
+
+                    {product.reviews.length === 0 ? (
+                      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                        <Typography sx={{ color: "grey.100", fontSize: 14 }}>No written reviews yet</Typography>
+
+                        {userInfo ? (
+                          <Typography sx={{ color: "grey.100", fontSize: 14 }}>Be the first to review!</Typography>
+                        ) : (
+                          <Link to="/login" style={{ textDecoration: "none" }}>
+                            <Typography sx={{ color: "grey.100", fontSize: 14 }}>Login to write a review</Typography>
+                          </Link>
+                        )}
+                      </Box>
+                    ) : (
+                      <List disablePadding>
+                        {product.reviews.map((review, index) => (
+                          <ListItem key={review.name + index} disableGutters sx={{ display: "block" }}>
+                            <Divider sx={{ mb: 3 }} />
+
+                            <ProductRating value={review.rating} />
+
+                            <Typography component="span" sx={{ color: "grey.100", fontSize: 16, pr: 1 }}>
+                              {review.name}
+                            </Typography>
+
+                            <Typography component="span" sx={{ color: "grey.400", fontSize: 14 }}>
+                              {review.createdAt.substring(0, 10)}
+                            </Typography>
+                            <Typography sx={{ color: "grey.100", fontSize: 14, py: 1 }}>{review.comment}</Typography>
+                          </ListItem>
+                        ))}
+                      </List>
+                    )}
+
+                    <List disablePadding>
+                      <ListItem disableGutters disablePadding sx={{ display: "block" }}>
+                        {errorProductReview && <Message variant="error" text={errorProductReview} />}
+                        {errorRating && <Message variant="error" text={errorRating} />}
+
+                        {userInfo ? (
+                          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1, width: "100%", mt: 3 }}>
+                            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                              <Typography variant="h6">Your Review</Typography>
+                              <Box sx={{ display: "flex", justifyContent: "center" }}>
+                                <Typography variant="span" sx={{ pr: 1 }}>
+                                  Rating
+                                </Typography>
+                                <StyledRating
+                                  required
+                                  precision={1}
+                                  icon={<FaStar fontSize="16" />}
+                                  emptyIcon={<FaRegStar fontSize="16" />}
+                                  value={rating}
+                                  onChange={(e) => setRating(Number(e.target.value))}
+                                />{" "}
+                              </Box>
+                            </Box>
+                            <TextField
+                              sx={{
+                                my: 1,
+                                backgroundColor: "grey.800",
+                                input: { color: "grey.100" },
+                                ".MuiInputLabel-animated": { color: "grey.400" },
+                                ".MuiInputLabel-animated.Mui-focused": { color: "primary.light" },
+                                ".MuiInputBase-inputMultiline": { color: "white" },
+                                borderRadius: 1,
+                              }}
+                              required
+                              fullWidth
+                              id="comment"
+                              label="Comment"
+                              name="comment"
+                              value={comment}
+                              multiline
+                              rows={4}
+                              onChange={(e) => setComment(e.target.value)}
+                            />
+
+                            <Button type="submit" fullWidth variant="contained" sx={{ my: 1, textTransform: "none" }}>
+                              Submit
+                            </Button>
+                          </Box>
+                        ) : null}
+                      </ListItem>
+                      {product.reviews.length !== 0 && !userInfo && (
+                        <Link to="/login" style={{ textDecoration: "none" }}>
+                          <Typography sx={{ color: "grey.100", fontSize: 14 }}>Login to write a review</Typography>
+                        </Link>
+                      )}
+                    </List>
                   </AccordionDetails>
                 </Accordion>
               </Box>

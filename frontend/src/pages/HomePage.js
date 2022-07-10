@@ -9,15 +9,15 @@ import Loader from "../components/Loader";
 // import products from "../products";
 import { listProducts } from "../actions/productActions";
 
-const HomePage = () => {
+const HomePage = ({ keyword }) => {
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
   const { loading, products, error } = productList;
 
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
+    dispatch(listProducts(keyword));
+  }, [dispatch, keyword]);
 
   // TODO: If first page of shop, have a big banner with text welcoming the visitor.
   return (
