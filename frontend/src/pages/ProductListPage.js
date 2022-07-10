@@ -61,7 +61,6 @@ const ProductListPage = ({ id, pageNumber }) => {
     if (successCreate) {
       navigate(`/admin/product/${createdProduct._id}/edit`);
     } else {
-      console.log(pageNumber);
       dispatch(listProducts("", pageNumber));
     }
   }, [dispatch, navigate, userInfo, successDelete, successCreate, createdProduct, pageNumber]);

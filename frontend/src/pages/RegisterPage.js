@@ -20,7 +20,6 @@ const RegisterPage = ({ search }) => {
 
   const userRegister = useSelector((state) => state.userRegister);
   const { loading, error, userInfo } = userRegister;
-  console.log(userRegister);
 
   const redirect = search ? search.split("=")[1] : "/";
 

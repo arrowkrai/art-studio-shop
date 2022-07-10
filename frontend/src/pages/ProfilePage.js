@@ -160,6 +160,9 @@ const ProfilePage = ({ search }) => {
             <Typography variant="h3" sx={{ mt: 1, pl: mediumPadding, fontSize: 48 * smallFontMultiplier }}>
               My Orders
             </Typography>
+            {orders?.length === 0 && <Typography sx={{ mt: 3, pl: mediumPadding, fontSize: 16 * smallFontMultiplier }}>
+              There are no orders on this account.
+            </Typography>}
             {loadingOrders ? (
               <Loader />
             ) : errorOrders ? (

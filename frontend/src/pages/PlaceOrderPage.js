@@ -13,6 +13,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Title from "../components/Title";
 import { ORDER_CREATE_RESET } from "../constants/orderConstants";
 import { USER_DETAILS_RESET } from "../constants/userConstants";
+import { getProfileOrders } from "../actions/orderActions";
 
 const PlaceOrderPage = () => {
   const dispatch = useDispatch();
@@ -50,13 +51,13 @@ const PlaceOrderPage = () => {
 
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order, success, error } = orderCreate;
-  console.log(order);
 
   useEffect(() => {
     if (success) {
       navigate(`/order/${order._id}`);
       dispatch({ type: USER_DETAILS_RESET });
       dispatch({ type: ORDER_CREATE_RESET });
+      dispatch(getProfileOrders());
     }
     // eslint-disable-next-line
   }, [success, navigate]);

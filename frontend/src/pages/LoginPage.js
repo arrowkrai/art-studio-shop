@@ -7,6 +7,12 @@ import { login } from "../actions/userActions";
 import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import Title from "../components/Title";
+import { register } from "../actions/userActions";
+
+function randomIntFromInterval(min, max) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 const LoginPage = ({ search }) => {
   const [email, setEmail] = useState("");
@@ -29,6 +35,12 @@ const LoginPage = ({ search }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login(email, password));
+  };
+
+  const signInWithDemoAccount = (e) => {
+    e.preventDefault();
+    const demoNum = randomIntFromInterval(1000, 9999)
+    dispatch(register("Demo Account", `demoaccount${demoNum}@example.com`, demoNum));
   };
 
   return (
@@ -91,6 +103,15 @@ const LoginPage = ({ search }) => {
             </Typography>
           </Link>
         </Box>
+        <Button
+          color="secondary"
+          onClick={signInWithDemoAccount}
+          fullWidth
+          variant="contained"
+          sx={{ mt: 10, textTransform: "none" }}
+        >
+          Sign In with Demo Account
+        </Button>
       </Container>
     </Box>
   );
