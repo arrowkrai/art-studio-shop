@@ -1,16 +1,11 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import CardContent from "@mui/material/CardContent";
-// import Link from "@mui/material/Link";
 import { Link } from "react-router-dom";
-import Rating from "@mui/material/Rating";
 import ProductRating from "./ProductRating";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { styled } from "@mui/material/styles";
 
 const Product = ({ product }) => {
   const theme = useTheme();
@@ -21,9 +16,7 @@ const Product = ({ product }) => {
 
   return (
     <Grid item xs={12} md={6} xl={4} sx={{ color: "grey.100" }}>
-      {/* <Link href={`/product/${product._id}`} underline="none" sx={{ color: "grey.200" }}> */}
       <Link to={`/product/${product._id}`}>
-        {/* <MyImage src={product.image}/> */}
         <Box sx={{ position: "relative", color: "grey.100" }}>
           <img src={product.image} style={{ width: "100%" }} alt={product.name} />
           <Box

@@ -18,8 +18,7 @@ import {
 } from "@mui/material";
 import ProductRating from "../components/ProductRating";
 import { FaLeaf, FaPaintBrush, FaImage } from "react-icons/fa";
-import { BsBrush, BsPrinterFill } from "react-icons/bs";
-import { IoIosContrast } from "react-icons/io";
+import { BsPrinterFill } from "react-icons/bs";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./ProductPage.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -276,6 +275,7 @@ const ProductPage = ({ id }) => {
                               {review.createdAt.substring(0, 10)}
                             </Typography>
                             <Typography sx={{ color: "grey.100", fontSize: 14, py: 1 }}>{review.comment}</Typography>
+                            {index === product.reviews.length - 1 && <Divider sx={{ mt: 2 }} />}
                           </ListItem>
                         ))}
                       </List>
@@ -341,7 +341,9 @@ const ProductPage = ({ id }) => {
                       </ListItem>
                       {product.reviews.length !== 0 && !userInfo && (
                         <Link to="/login" style={{ textDecoration: "none" }}>
-                          <Typography sx={{ color: "grey.100", fontSize: 14 }}>Login to write a review</Typography>
+                          <Typography sx={{ color: "grey.100", fontSize: 14, pt: 1 }}>
+                            Login to write a review
+                          </Typography>
                         </Link>
                       )}
                     </List>

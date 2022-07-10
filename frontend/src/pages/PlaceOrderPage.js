@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
-import { saveShippingAddress } from "../actions/cartActions";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { createOrder } from "../actions/orderActions";
 import { getUserDetails } from "../actions/userActions";
@@ -86,13 +85,13 @@ const PlaceOrderPage = () => {
 
   return (
     <Box sx={{ minHeight: "calc(100vh - 128px)", py: 4, px: 1, mt: 0, backgroundColor: "#171717", color: "grey.100" }}>
-      <Title title="Place Order" />
+      <Title title="Create" />
       <Container maxWidth="md">
         <CheckoutSteps step={2} />
       </Container>
       <Container maxWidth="xl">
         <Typography variant="h4" sx={{ my: 3, fontSize: 34 * smallFontMultiplier }}>
-          Place Order
+          Create Order
         </Typography>
         {cart.cartItems.length === 0 ? (
           <Typography>
@@ -350,7 +349,7 @@ const PlaceOrderPage = () => {
                   onClick={handlePlaceOrder}
                 >
                   {/* <ShoppingCartCheckoutIcon style={{ marginRight: "5px" }} /> */}
-                  Place Order
+                  Create Order
                 </Button>
               ) : (
                 <Button

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { login } from "../actions/userActions";
-import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import Title from "../components/Title";
 import { register } from "../actions/userActions";
@@ -39,7 +39,7 @@ const LoginPage = ({ search }) => {
 
   const signInWithDemoAccount = (e) => {
     e.preventDefault();
-    const demoNum = randomIntFromInterval(1000, 9999)
+    const demoNum = randomIntFromInterval(1000, 9999);
     dispatch(register("Demo Account", `demoaccount${demoNum}@example.com`, demoNum));
   };
 

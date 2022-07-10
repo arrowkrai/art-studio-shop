@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Typography, Box, Grid, Card, CardContent, Container } from "@mui/material";
+import { Typography, Box, Grid, Container } from "@mui/material";
 
 import Product from "../components/Product";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-// import products from "../products";
 import { listProducts } from "../actions/productActions";
 import Paginate from "../components/Paginate";
 import Banner from "../components/Banner";
