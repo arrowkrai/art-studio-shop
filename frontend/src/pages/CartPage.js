@@ -21,6 +21,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Title from "../components/Title";
+import { PRODUCT_DETAILS_RESET } from "../constants/productConstants";
 
 const CartPage = ({ id, search }) => {
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ const CartPage = ({ id, search }) => {
     if (productId) {
       dispatch(addToCart(id, qty, frame));
     }
+    dispatch({ type: PRODUCT_DETAILS_RESET });
   }, [dispatch, productId, qty, frame, id]);
 
   const theme = useTheme();

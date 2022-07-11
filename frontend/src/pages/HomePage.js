@@ -11,6 +11,7 @@ import Banner from "../components/Banner";
 import Title from "../components/Title";
 import { Link } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { PRODUCT_DETAILS_RESET } from "../constants/productConstants";
 
 const HomePage = ({ keyword, pageNumber }) => {
   if (!pageNumber) pageNumber = 1;
@@ -21,6 +22,7 @@ const HomePage = ({ keyword, pageNumber }) => {
 
   useEffect(() => {
     dispatch(listProducts(keyword, pageNumber));
+    dispatch({ type: PRODUCT_DETAILS_RESET });
   }, [dispatch, keyword, pageNumber]);
 
   return (
