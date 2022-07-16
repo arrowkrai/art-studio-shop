@@ -1,5 +1,7 @@
 # Art Studio Shop
 
+![demo](https://raw.githubusercontent.com/arrowkrai/art-studio-shop/main/demo.jpeg)
+
 ## Installation & Set Up
 
 1. Install Dependencies
