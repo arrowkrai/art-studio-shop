@@ -9,8 +9,8 @@ const Banner = () => {
   const largeScreen = useMediaQuery(theme.breakpoints.up("lg"));
   const smallScreen = useMediaQuery(theme.breakpoints.up("sm"));
   const bannerHeight = xlargeScreen ? 550 : 400;
-  const textPositionTop = xlargeScreen ? 500 : largeScreen ? 380 : smallScreen ? 400 : 350;
-  const textFontSize = xlargeScreen ? 96 : largeScreen ? 68 : smallScreen ? 46 : 38;
+  const textPositionTop = xlargeScreen ? 530 : largeScreen ? 380 : smallScreen ? 380 : 380;
+  const textFontSize = xlargeScreen ? 72 : largeScreen ? 62 : smallScreen ? 62 : 38;
   return (
     <Box sx={{ mb: 10 }}>
       <Box
@@ -26,15 +26,16 @@ const Banner = () => {
         variant="h1"
         sx={{
           color: "grey.100",
-          fontWeight: 600,
+          fontWeight: 500,
           position: "absolute",
           top: textPositionTop,
-          left: 50,
+          left: 60,
           fontSize: textFontSize,
           pr: 5,
+          letterSpacing:-1
         }}
       >
-        West Studio Art Shop
+        Art Prints
       </Typography>
     </Box>
   );
